@@ -12,6 +12,13 @@ export const navigationRoutes = {
       },
     },
     {
+      name: 'masinfo',
+      displayName: 'menu.masinfo',
+      meta: {
+        iconClass: 'vuestic-iconset-tables',
+      },
+    },
+    {
       name: 'statistics',
       displayName: 'menu.statistics',
       meta: {

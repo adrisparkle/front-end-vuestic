@@ -3,9 +3,10 @@
     "agree": "I agree to",
     "createAccount": "Create account",
     "createNewAccount": "Create New Account",
-    "email": "Email",
-    "login": "Login",
-    "password": "Password",
+    "email": "Usuario",
+    "login": "Inicio de Sesión",
+    "submit":"Ingresar",
+    "password": "Contraseña",
     "recover_password": "Recover password",
     "sign_up": "Sign Up",
     "keep_logged_in": "Keep me logged in",
@@ -262,7 +263,8 @@
     "back": "Back to all icons",
     "none": "No icons found",
     "search": "Icon search",
-    "title": "Icons"
+    "title": "Icons",
+    "mas_info": "info"
   },
   "spinners": {
     "title": "Spinners",
@@ -314,7 +316,8 @@
     "sliders": "Sliders",
     "popovers": "Popovers",
     "chat": "Chat",
-    "tituloBusqueda": "Búsqueda"
+    "tituloBusqueda": "Búsqueda",
+    "masinfo" : "Más info"
   },
   "messages": {
     "all": "See all messages",
@@ -411,7 +414,10 @@
     "archieved": "Archieved",
     "starterKit": "Starter Kit",
     "notifications": "Notifications",
-    "routerSupport": "Router Support"
+    "routerSupport": "Router Support",
+    "masinfo":"Más información",
+    "docs":"Documentos anexos",
+    "procesos":"Procesos"
   },
   "tables": {
     "basic": "Tabla básica",
@@ -434,7 +440,6 @@
     "noDataAvailable": "No hay datos disponibles",
     "noReport": "There is no data to display. Report will be available on November 3, 2018.",
     "loading": "Cargando",
-    //aqui es donde se añaden los headings a las tablas
     "headings": {
       "email": "Correo",
       "name": "Nombre",
@@ -442,8 +447,18 @@
       "lastName": "Apellido",
       "status": "Estado",
       "country": "Pais",
+      "n_documento":"N° doc.",
       "solicitante":"Solicitante",
-      "autorizador":"Autorizador"
+      "fecha_documento":"Fecha de documento",
+      "regional":"Regional",
+      "unidad_organizacional":"Unidad Organizacional",
+      "acciones": "Acciones",
+      "num":"N°",
+      "item":"item",
+      "descripcion":"Descripcion",
+      "cantidad":"Cantidad",
+      "precio":"Precio",
+      "comentario":"Comentario"
     }
   },
   "user": {
@@ -500,6 +515,9 @@
       "secondaryAction": "Secondary action",
       "action1": "Action 1",
       "action2": "Action 2"
+    },
+    "mine": {
+      "masinfo":"Más información"
     }
   }
 }

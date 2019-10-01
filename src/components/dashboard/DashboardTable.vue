@@ -2,19 +2,14 @@
   <va-card :title="$t('dashboard.table.title')">
     <div class="row align--center mb-1">
       <div class="flex xs12 sm6">
-          <va-input
-            class="ma-0"
-            :value="term"
-            :placeholder="$t('tables.searchByName')"
-            @input="search"
-          >
-            <va-icon name="fa fa-search" slot="prepend" />
-          </va-input>
-      </div>
-
-      <div class="flex xs12 sm6">
-        <div class="d-flex justify--end">
-        </div>
+        <va-input
+          class="ma-0"
+          :value="term"
+          :placeholder="$t('tables.searchByName')"
+          @input="search"
+        >
+          <va-icon name="fa fa-search" slot="prepend" />
+        </va-input>
       </div>
     </div>
 
@@ -35,15 +30,8 @@
       </template>
 
       <template slot="actions" slot-scope="props">
-        <va-button
-          small
-          outline
-          color="success"
-          icon="fa fa-check"
-          class="ma-0"
-          @click="resolveUser(props.rowData)"
-        >
-          {{ $t('dashboard.table.resolve') }}
+        <va-button flat small color="blue" icon="fa fa-plus" outline :to="{ name: 'masinfo' }">
+          {{ $t('icons.mas_info') }}
         </va-button>
       </template>
     </va-data-table>
@@ -53,7 +41,6 @@
 <script>
 import { debounce } from 'lodash'
 import data from '../markup-tables/data.json'
-
 export default {
   data () {
     return {
@@ -63,29 +50,33 @@ export default {
       mode: 0,
     }
   },
-  //Aqui es donde se añaden columnas a las tablas
   computed: {
     fields () {
       return [{
-        name: 'name',
+        name: 'n_documento',
+        title: this.$t('tables.headings.n_documento'),
+        width: '15%',
+      }, {
+        name: 'solicitante',
         title: this.$t('tables.headings.solicitante'),
         width: '30%',
       }, {
-        name: 'name',
-        title: this.$t('tables.headings.autorizador'),
-        width: '30%',
-      }, {
-        name: 'email',
-        title: this.$t('tables.headings.email'),
-        width: '30%',
-      }, {
-        name: '__slot:status',
-        title: this.$t('tables.headings.status'),
+        name: 'fecha_documento',
+        title: this.$t('tables.headings.fecha_documento'),
         width: '20%',
-        sortField: 'status',
+      }, {
+        name: 'regional',
+        title: this.$t('tables.headings.regional'),
+        width: '15%',
+      }, {
+        name: 'unidad_organizacional',
+        title: this.$t('tables.headings.unidad_organizacional'),
+        width: '20%',
       }, {
         name: '__slot:actions',
-        dataClass: 'text-right',
+        title: this.$t('tables.headings.acciones'),
+        width: '10%',
+        sortField: 'status',
       }]
     },
     modeOptions () {
@@ -101,9 +92,9 @@ export default {
       if (!this.term || this.term.length < 1) {
         return this.users
       }
-
+      /* aqui se busca solo por nombre de solicitante */
       return this.users.filter(item => {
-        return item.name.toLowerCase().startsWith(this.term.toLowerCase())
+        return item.solicitante.toLowerCase().startsWith(this.term.toLowerCase())
       })
     },
   },
@@ -112,21 +103,17 @@ export default {
       if (status === 'paid') {
         return 'success'
       }
-
       if (status === 'processing') {
         return 'info'
       }
-
       return 'danger'
     },
     resolveUser (user) {
       this.loading = true
-
       setTimeout(() => {
         const idx = this.users.findIndex(u => u.id === user.id)
         this.users.splice(idx, 1)
         this.loading = false
-
         this.showToast(this.$t('dashboard.table.resolved'), {
           icon: 'fa-check',
           position: 'bottom-right',

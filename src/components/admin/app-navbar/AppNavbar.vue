@@ -2,7 +2,7 @@
   <va-navbar class="app-navbar">
     <header-selector slot="selector" :minimized.sync="minimizedProxy"/>
     <template slot="logo">
-      <va-icon-vuestic/>
+      Hola
     </template>
     <div class="app-navbar__actions row flex-nowrap align--center">
       <!--<settings-dropdown-->

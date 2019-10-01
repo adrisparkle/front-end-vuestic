@@ -83,7 +83,11 @@ export default new Router({
           name: 'dashboard',
           path: 'dashboard',
           component: () => import('../components/dashboard/Dashboard.vue'),
-          default: true,
+        },
+        {
+          name: 'masinfo',
+          path: 'masinfo',
+          component: () => import('../components/dashboard/MasInfo.vue'),
         },
         {
           name: 'statistics',
