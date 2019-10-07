@@ -10,6 +10,10 @@
         <va-icon name="fa fa-user" color="secondary" />
       </template>
     </va-data-table>
+    <div id="prueba">
+      aqui debe aparecer :
+      {{ info }}
+    </div>
     <div class="lists">
       <div class="row">
         <div class="flex xs12 lg4">
@@ -17,14 +21,13 @@
             <va-list-label>
               {{ $t('lists.docs') }}
             </va-list-label>
-
             <va-item>
               <va-item-section>
                 <va-item-label><b>Informe circunstanciado</b>
                 </va-item-label>
 
                 <va-item-label>
-                  <a href="http://google.com" target="_blank">Inserte link aquiwis</a>
+                  <a href="file:///\\18.221.90.154\Docs\INFORME CIRCUNSTANCIADO DRONES corregido.pdf">Inserte link aquiwis</a>
                 </va-item-label>
               </va-item-section>
             </va-item>
@@ -287,10 +290,16 @@ import { debounce } from 'lodash'
 import data from '../markup-tables/data.json'
 import VaCard from 'vuestic-ui/src/components/vuestic-components/va-card/VaCard'
 import VaItem from 'vuestic-ui/src/components/vuestic-components/va-list/VaItem'
+import Vue from 'vue'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+Vue.use(VueAxios, axios)
 export default {
   components: { VaItem, VaCard },
+  el: '#prueba',
   data () {
     return {
+      info: null,
       users: data.slice(),
       loading: false,
       term: null,
@@ -309,6 +318,11 @@ export default {
       contentThird: 'However, various anthropogenic factors have had a severe impact on zebra populations',
 
     }
+  },
+  mounted () {
+    axios
+      .get('https://api.coindesk.com/v1/bpi/currentprice.json')
+      .then(response => (this.info = response.data.bpi))
   },
   computed: {
     fields () {
