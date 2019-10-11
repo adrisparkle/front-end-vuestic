@@ -420,6 +420,7 @@
     "procesos":"Procesos"
   },
   "tables": {
+    "titulo1":"Búsqueda",
     "basic": "Tabla básica",
     "stripedHoverable": "Striped, Hoverable",
     "labelsActions": "Labels, Actions as Buttons",

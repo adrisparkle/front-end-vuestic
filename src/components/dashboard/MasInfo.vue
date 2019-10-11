@@ -1,72 +1,66 @@
 <template>
-  <va-card :title="$t('Detalles')">
-    <va-data-table
-      :fields="fields"
-      :data="filteredData"
-      :loading="loading"
-      hoverable
-    >
-      <template slot="icon" slot-scope="props">
-        <va-icon name="fa fa-user" color="secondary" />
-      </template>
-    </va-data-table>
-    <div id="prueba">
-      aqui debe aparecer :
-      {{ info }}
-    </div>
+  <va-card :title="$t('Anexos y mapa de relaciones')">
+    <ul id="prueba" v-if="
+/* eslint-disable vue/require-v-for-key */
+info && info.length">
+      <li v-for="inf of info">
+       num doc: {{ inf.numero_documento }}
+         solicitante: {{ inf.solicitante }}
+         uo: {{ inf.unidad_organizacional }}
+      </li>
+    </ul>
     <div class="lists">
+      <div class="flex xs12 lg12">
+        <va-list fit class="mb-2">
+          <va-list-label>
+            {{ $t('lists.docs') }}
+          </va-list-label>
+          <va-item>
+            <va-item-section>
+              <va-item-label><b>Informe circunstanciado</b>
+              </va-item-label>
+              <va-item-label>
+                <a href="file:///\\18.221.90.154\Docs\INFORME CIRCUNSTANCIADO DRONES corregido.pdf">Inserte link aquiwis</a>
+              </va-item-label>
+            </va-item-section>
+          </va-item>
+          <va-item>
+            <va-item-section>
+              <va-item-label><b>Contrato</b>
+              </va-item-label>
+
+              <va-item-label>
+                <a href="http://google.com" target="_blank">Inserte link aquiwis</a>
+              </va-item-label>
+            </va-item-section>
+          </va-item>
+          <va-item>
+            <va-item-section>
+              <va-item-label><b>Cotizaciones</b>
+              </va-item-label>
+
+              <va-item-label>
+                <a href="http://google.com" target="_blank">Inserte link aquiwis</a>
+              </va-item-label>
+            </va-item-section>
+          </va-item>
+          <va-item>
+            <va-item-section>
+              <va-item-label><b>Especificaciones tecnicas</b>
+              </va-item-label>
+
+              <va-item-label>
+                <a href="http://google.com" target="_blank">Inserte link aquiwis</a>
+              </va-item-label>
+            </va-item-section>
+          </va-item>
+        </va-list>
+      </div>
       <div class="row">
-        <div class="flex xs12 lg4">
+        <div class="flex xs12 lg12">
           <va-list fit class="mb-2">
             <va-list-label>
-              {{ $t('lists.docs') }}
-            </va-list-label>
-            <va-item>
-              <va-item-section>
-                <va-item-label><b>Informe circunstanciado</b>
-                </va-item-label>
-
-                <va-item-label>
-                  <a href="file:///\\18.221.90.154\Docs\INFORME CIRCUNSTANCIADO DRONES corregido.pdf">Inserte link aquiwis</a>
-                </va-item-label>
-              </va-item-section>
-            </va-item>
-            <va-item>
-              <va-item-section>
-                <va-item-label><b>Contrato</b>
-                </va-item-label>
-
-                <va-item-label>
-                  <a href="http://google.com" target="_blank">Inserte link aquiwis</a>
-                </va-item-label>
-              </va-item-section>
-            </va-item>
-            <va-item>
-              <va-item-section>
-                <va-item-label><b>Cotizaciones</b>
-                </va-item-label>
-
-                <va-item-label>
-                  <a href="http://google.com" target="_blank">Inserte link aquiwis</a>
-                </va-item-label>
-              </va-item-section>
-            </va-item>
-            <va-item>
-              <va-item-section>
-                <va-item-label><b>Especificaciones tecnicas</b>
-                </va-item-label>
-
-                <va-item-label>
-                  <a href="http://google.com" target="_blank">Inserte link aquiwis</a>
-                </va-item-label>
-              </va-item-section>
-            </va-item>
-          </va-list>
-        </div>
-        <div class="flex xs12 lg8">
-          <va-list fit class="mb-2">
-            <va-list-label>
-              {{ $t('lists.procesos') }}
+              {{ $t('Mapa de relaciones') }}
             </va-list-label>
             <va-timeline vertical centered style="min-width: 300px;">
               <va-timeline-item color="info" active>
@@ -109,6 +103,15 @@
                       </va-item-label>
                     </va-item-section>
                   </va-item>
+                  <va-item>
+                    <va-item-section align="center">
+                      <va-item-label>
+                          <va-button flat small color="blue" icon="fa fa-plus" outline :to="{ name: 'dashboard' }">
+                            {{ $t('Más información') }}
+                          </va-button>
+                      </va-item-label>
+                    </va-item-section>
+                  </va-item>
                 </va-card>
               </va-timeline-item>
               <va-timeline-item color="info" active>
@@ -147,6 +150,15 @@
                       </va-item-label>
                       <va-item-label>
                         Inserte data
+                      </va-item-label>
+                    </va-item-section>
+                  </va-item>
+                  <va-item>
+                    <va-item-section align="center">
+                      <va-item-label>
+                        <va-button flat small color="blue" icon="fa fa-plus" outline :to="{ name: 'dashboard' }">
+                          {{ $t('Más información') }}
+                        </va-button>
                       </va-item-label>
                     </va-item-section>
                   </va-item>
@@ -192,6 +204,15 @@
                       </va-item-label>
                     </va-item-section>
                   </va-item>
+                  <va-item>
+                    <va-item-section align="center">
+                      <va-item-label>
+                        <va-button flat small color="blue" icon="fa fa-plus" outline :to="{ name: 'dashboard' }">
+                          {{ $t('Más información') }}
+                        </va-button>
+                      </va-item-label>
+                    </va-item-section>
+                  </va-item>
                 </va-card>
               </va-timeline-item>
               <va-timeline-item color="info" active>
@@ -231,6 +252,15 @@
                       </va-item-label>
                       <va-item-label>
                         Inserte data
+                      </va-item-label>
+                    </va-item-section>
+                  </va-item>
+                  <va-item>
+                    <va-item-section align="center">
+                      <va-item-label>
+                        <va-button flat small color="blue" icon="fa fa-plus" outline :to="{ name: 'dashboard' }">
+                          {{ $t('Más información') }}
+                        </va-button>
                       </va-item-label>
                     </va-item-section>
                   </va-item>
@@ -276,6 +306,15 @@
                       </va-item-label>
                     </va-item-section>
                   </va-item>
+                  <va-item>
+                    <va-item-section align="center">
+                      <va-item-label>
+                        <va-button flat small color="blue" icon="fa fa-plus" outline :to="{ name: 'dashboard' }">
+                          {{ $t('Más información') }}
+                        </va-button>
+                      </va-item-label>
+                    </va-item-section>
+                  </va-item>
                 </va-card>
               </va-timeline-item>
             </va-timeline>
@@ -293,9 +332,11 @@ import VaItem from 'vuestic-ui/src/components/vuestic-components/va-list/VaItem'
 import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import VaItemSection from 'vuestic-ui/src/components/vuestic-components/va-list/VaItemSection'
+import VaItemLabel from 'vuestic-ui/src/components/vuestic-components/va-list/VaItemLabel'
 Vue.use(VueAxios, axios)
 export default {
-  components: { VaItem, VaCard },
+  components: { VaItemLabel, VaItemSection, VaItem, VaCard },
   el: '#prueba',
   data () {
     return {
@@ -321,8 +362,8 @@ export default {
   },
   mounted () {
     axios
-      .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-      .then(response => (this.info = response.data.bpi))
+      .get('http://192.168.137.112:8008/api/PurchaseRequestDetail/3000527')
+      .then(response => (this.info = response.data))
   },
   computed: {
     fields () {
