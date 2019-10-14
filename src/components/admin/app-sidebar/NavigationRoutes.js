@@ -19,6 +19,13 @@ export const navigationRoutes = {
       },
     },
     {
+      name: 'proceso',
+      displayName: 'Proceso',
+      meta: {
+        iconClass: 'vuestic-iconset-ui-elements',
+      },
+    },
+    {
       name: 'statistics',
       displayName: 'menu.statistics',
       meta: {

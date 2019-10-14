@@ -90,6 +90,11 @@ export default new Router({
           component: () => import('../components/dashboard/MasInfo.vue'),
         },
         {
+          name: 'proceso',
+          path: 'proceso',
+          component: () => import('../components/dashboard/Proceso.vue'),
+        },
+        {
           name: 'statistics',
           path: 'statistics',
           component: EmptyParentComponent,
