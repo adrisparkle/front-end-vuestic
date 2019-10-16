@@ -317,7 +317,8 @@
     "popovers": "Popovers",
     "chat": "Chat",
     "tituloBusqueda": "Búsqueda",
-    "masinfo" : "Más info"
+    "relaciones": "Relaciones",
+    "solicitudCompra": "Solicitud de compra"
   },
   "messages": {
     "all": "See all messages",

@@ -1,51 +1,48 @@
 <template>
-  <va-card :title="$t('tables.searchTrendsBadges')">
-    <div class="row align--center">
-      <div class="flex xs12 md6">
-        <va-input
-          :value="term"
-          :placeholder="$t('tables.searchByName')"
-          @input="search"
-        >
-          <va-icon name="fa fa-search" slot="prepend" />
-        </va-input>
-      </div>
-
-      <div class="flex xs12 md3 offset--md3">
-        <va-select
-          v-model="perPage"
-          :label="$t('tables.perPage')"
-          :options="perPageOptions"></va-select>
-      </div>
-    </div>
-
+  <va-card :title="$t('Búsqueda de solicitudes de compra')">
     <va-data-table
       :fields="fields"
-      :data="readItems"
+      :data="items"
+      :loading="loading"
+      :totalPages="totalPages"
       :per-page="parseInt(perPage)"
-      @row-clicked="showUser"
-      clickable
+      @page-selected="readItems"
+      api-mode
     >
+      <template slot="actions" slot-scope="props">
+        <va-button flat small color="blue" icon="fa fa-plus"
+                   @click="see(props.rowData.id)">
+          {{ $t('icons.mas_info') }}
+        </va-button>
+      </template>
+      <template slot="prueba" slot-scope="props">
+        <va-button flat small color="orange" icon="fa fa-plus"
+                   @click="select(props.rowData)">
+          {{ $t('icons.mas_info') }}
+        </va-button>
+      </template>
     </va-data-table>
   </va-card>
 </template>
 
 <script>
+/* eslint-disable camelcase */
 import axios from 'axios'
+import router from '../../router/index'
 
 export default {
   data () {
     return {
-      term: null,
-      perPage: '6',
-      perPageOptions: ['4', '6', '10', '20'],
+      page: 1,
       items: [],
+      loading: false,
+      perPage: '6',
     }
   },
   computed: {
     fields () {
       return [{
-        name: 'numero_documento',
+        name: 'id',
         title: this.$t('tables.headings.n_documento'),
         width: '15%',
       }, {
@@ -75,20 +72,35 @@ export default {
   created () {
     this.readItems()
   },
+  filteredData () {
+    if (!this.term || this.term.length < 1) {
+      return this.readItems()
+    }
+    /* aqui se busca solo por nombre de solicitante */
+    return this.readItems().filter(item => {
+      return item.solicitante.toLowerCase().startsWith(this.term.toLowerCase())
+    })
+  },
   methods: {
-    readItems () {
+    readItems (page = 0) {
       this.loading = true
-      axios.get('http://192.168.137.112:8008/api/PurchaseSearch')
+
+      const params = {
+        per_page: this.per_page,
+        page: page,
+      }
+
+      axios.get('http://192.168.137.112:8008/api/PurchaseSearch/', { params })
         .then(response => {
           this.items = response.data
           this.loading = false
-          if (!this.term || this.term.length < 1) {
-            return this.items
-          }
-          return this.items.filter(item => {
-            return item.fullName.toLowerCase().startsWith(this.term.toLowerCase())
-          })
         })
+    },
+    select (id) {
+      alert('Edit User: ' + JSON.stringify(id))
+    },
+    see: function (id) {
+      router.push('relaciones/' + id)
     },
   },
 }

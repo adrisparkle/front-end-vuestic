@@ -12,17 +12,17 @@ export const navigationRoutes = {
       },
     },
     {
-      name: 'masinfo',
-      displayName: 'menu.masinfo',
+      name: 'relaciones',
+      displayName: 'menu.relaciones',
       meta: {
-        iconClass: 'vuestic-iconset-tables',
+        iconClass: 'vuestic-iconset-dashboard',
       },
     },
     {
-      name: 'proceso',
-      displayName: 'Proceso',
+      name: 'solicitud',
+      displayName: 'menu.solicitudCompra',
       meta: {
-        iconClass: 'vuestic-iconset-ui-elements',
+        iconClass: 'vuestic-iconset-dashboard',
       },
     },
     {

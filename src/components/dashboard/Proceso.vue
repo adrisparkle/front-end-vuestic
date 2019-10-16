@@ -1,181 +1,156 @@
 <template>
-  <va-card :title="$t('Proceso')">
-    <ul id="prueba" v-if="
-/* eslint-disable vue/require-v-for-key */
-info && info.length">
-      <li v-for="inf of info">
-       num doc: {{ inf.numero_documento }}
-         solicitante: {{ inf.solicitante }}
-         uo: {{ inf.unidad_organizacional }}
-      </li>
-    </ul>
-    <div class="lists">
-      <div class="flex xs12 lg12">
+  <div class="lists">
+    <div class="row">
+      <div class="flex xs12 lg8">
         <va-list fit class="mb-2">
           <va-list-label>
-            {{ $t('lists.docs') }}
+            {{ $t('Solicitud de compras') }}
           </va-list-label>
-          <va-item>
-            <va-item-section>
-              <va-item-label><b>Informe circunstanciado</b>
-              </va-item-label>
-              <va-item-label>
-                <a href="file:///\\18.221.90.154\Docs\INFORME CIRCUNSTANCIADO DRONES corregido.pdf">Inserte link aquiwis</a>
-              </va-item-label>
-            </va-item-section>
-          </va-item>
-          <va-item>
-            <va-item-section>
-              <va-item-label><b>Contrato</b>
-              </va-item-label>
-
-              <va-item-label>
-                <a href="http://google.com" target="_blank">Inserte link aquiwis</a>
-              </va-item-label>
-            </va-item-section>
-          </va-item>
-          <va-item>
-            <va-item-section>
-              <va-item-label><b>Cotizaciones</b>
-              </va-item-label>
-
-              <va-item-label>
-                <a href="http://google.com" target="_blank">Inserte link aquiwis</a>
-              </va-item-label>
-            </va-item-section>
-          </va-item>
-          <va-item>
-            <va-item-section>
-              <va-item-label><b>Especificaciones tecnicas</b>
-              </va-item-label>
-
-              <va-item-label>
-                <a href="http://google.com" target="_blank">Inserte link aquiwis</a>
-              </va-item-label>
-            </va-item-section>
-          </va-item>
+          <template v-for="data of formData">
+            <table :key="'item' + data.id" width="100%" class="bla">
+              <tr>
+                <td align="right" class="bla">
+                  <b># Solicitante: </b>
+                </td>
+                <td class="bla">
+                  {{ data.codigo_solicitante }}
+                </td>
+              </tr>
+              <tr>
+                <td class="bla" align="right">
+                  <b>Nombre del solicitante:</b>
+                </td>
+                <td class="bla">
+                  {{ data.solicitante }}
+                </td>
+              </tr>
+              <tr>
+                <td class="bla" align="right">
+                  <b>Serie:</b>
+                </td>
+                <td class="bla">
+                  {{ data.serie }}
+                </td>
+              </tr>
+              <tr>
+              <td class="bla" align="right">
+                <b># Documento:</b>
+              </td>
+              <td class="bla">
+                {{ data.id }}
+              </td>
+              </tr>
+              <tr>
+                <td class="bla" align="right">
+                  <b>Unidad Organizacional:</b>
+                </td>
+                <td class="bla">
+                  {{ data.unidad_organizacional }}
+                </td>
+              </tr>
+              <tr>
+                <td class="bla" align="right">
+                  <b>Regional</b>
+                </td>
+                <td class="bla">
+                  {{ data.regional }}
+                </td>
+              </tr>
+              <tr>
+                <td class="bla" align="right">
+                  <b>Fecha de contabilización</b>
+                </td>
+                <td class="bla">
+                  {{ data.fecha_contabilizacion }}
+                </td>
+              </tr>
+              <tr>
+                <td class="bla" align="right">
+                  <b>Valido hasta:</b>
+                </td>
+                <td class="bla">
+                  {{ data.fecha_valida }}
+                </td>
+              </tr>
+              <tr>
+                <td class="bla" align="right">
+                  <b>Fecha de documento</b>
+                </td>
+                <td class="bla">
+                  {{ data.fecha_documento }}
+                </td>
+              </tr>
+              <tr>
+                <td class="bla" align="right">
+                  <b>Fecha requerida</b>
+                </td>
+                <td class="bla">
+                  {{ data.fecha_requerida }}
+                </td>
+              </tr></table>
+          </template>
         </va-list>
       </div>
     </div>
-  </va-card>
+    <div class="flex xs12 lg8">
+      <va-card :title="$t('tables.basic')" class="mb-2">
+        <table class="va-table">
+          <thead>
+          <tr>
+            <th>{{ $t('tables.headings.name') }}</th>
+            <th>{{ $t('tables.headings.email') }}</th>
+            <th>{{ $t('tables.headings.country') }}</th>
+            <th>{{ $t('tables.headings.status') }}</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr v-for="user in users" :key="user.id">
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.country }}</td>
+            <td>
+              <va-badge :color="getStatusColor(user.status)">
+                {{ user.status }}
+              </va-badge>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </va-card>
+    </div>
+  </div>
 </template>
 <script>
-import { debounce } from 'lodash'
-import data from '../markup-tables/data.json'
-import VaCard from 'vuestic-ui/src/components/vuestic-components/va-card/VaCard'
-import VaItem from 'vuestic-ui/src/components/vuestic-components/va-list/VaItem'
-import Vue from 'vue'
 import axios from 'axios'
-import VueAxios from 'vue-axios'
-import VaItemSection from 'vuestic-ui/src/components/vuestic-components/va-list/VaItemSection'
-import VaItemLabel from 'vuestic-ui/src/components/vuestic-components/va-list/VaItemLabel'
-Vue.use(VueAxios, axios)
+
 export default {
-  components: { VaItemLabel, VaItemSection, VaItem, VaCard },
-  el: '#prueba',
+  computed: {
+  },
   data () {
     return {
-      info: null,
-      users: data.slice(),
-      loading: false,
-      term: null,
-      mode: 0,
-      dateFirst: '',
-      titleFirst: 'Make design',
-      titleSecond: 'Develop an app',
-      titleThird: 'Submit an app',
-      horizontalSimpleContentFirst: 'Pre-sail rate: 50%',
-      dateSecond: 'May 22 10:00',
-      horizontalSimpleContentSecond: 'Pre-sail rate: 40%',
-      dateThird: 'July 19 17:45',
-      horizontalSimpleContentThird: 'Pre-sail rate: 20%',
-      contentFirst: 'The unique stripes of zebras make them one of the animals most familiar to people.',
-      contentSecond: 'They occur in a variety of habitats, such as grasslands, savannas, woodlands, thorny scrublands.',
-      contentThird: 'However, various anthropogenic factors have had a severe impact on zebra populations',
-
+      formData: {
+        id: null,
+      },
     }
   },
-  mounted () {
-    axios
-      .get('http://192.168.137.112:8008/api/PurchaseRequestDetail/3000527')
-      .then(response => (this.info = response.data))
-  },
-  computed: {
-    fields () {
-      return [{
-        name: 'num',
-        title: this.$t('tables.headings.num'),
-        width: '10%',
-      }, {
-        name: 'item',
-        title: this.$t('tables.headings.item'),
-        width: '15%',
-      }, {
-        name: 'descripcion',
-        title: this.$t('tables.headings.descripcion'),
-        width: '25%',
-      }, {
-        name: 'cantidad',
-        title: this.$t('tables.headings.cantidad'),
-        width: '10%',
-      }, {
-        name: 'precio',
-        title: this.$t('tables.headings.precio'),
-        width: '10%',
-      }, {
-        name: 'comentario',
-        title: this.$t('tables.headings.comentario'),
-        width: '30%',
-      }]
-    },
-    modeOptions () {
-      return [{
-        value: 0,
-        label: this.$t('dashboard.table.brief'),
-      }, {
-        value: 1,
-        label: this.$t('dashboard.table.detailed'),
-      }]
-    },
-    filteredData () {
-      if (!this.term || this.term.length < 1) {
-        return this.users
-      }
-      /* aqui se busca solo por nombre de solicitante */
-      return this.users.filter(item => {
-        return item.solicitante.toLowerCase().startsWith(this.term.toLowerCase())
-      })
-    },
-  },
   methods: {
-    getStatusColor (status) {
-      if (status === 'paid') {
-        return 'success'
-      }
-      if (status === 'processing') {
-        return 'info'
-      }
-      return 'danger'
-    },
-    resolveUser (user) {
-      this.loading = true
-      setTimeout(() => {
-        const idx = this.users.findIndex(u => u.id === user.id)
-        this.users.splice(idx, 1)
-        this.loading = false
-        this.showToast(this.$t('dashboard.table.resolved'), {
-          icon: 'fa-check',
-          position: 'bottom-right',
-          duration: 1500,
+    init: function () {
+      this.formData = this.$route.params
+      axios.get('http://192.168.137.112:8008/api/PurchaseRequest/' + this.formData.id)
+        .then(response => {
+          this.formData = response.data
         })
-      }, 500)
+        .catch()
     },
-    search: debounce(function (term) {
-      this.term = term
-    }, 400),
+  },
+  created () {
+    this.init()
   },
 }
 </script>
-
 <style lang="scss">
+  .bla{
+    padding: 10px !important;
+  }
 </style>

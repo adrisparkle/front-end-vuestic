@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import AuthLayout from '../components/auth/AuthLayout'
 import AppLayout from '../components/admin/AppLayout'
+import Dashboard from '../components/dashboard/Dashboard.vue'
 
 Vue.use(Router)
 
@@ -85,13 +86,13 @@ export default new Router({
           component: () => import('../components/dashboard/Dashboard.vue'),
         },
         {
-          name: 'masinfo',
-          path: 'masinfo',
+          name: 'relaciones',
+          path: 'relaciones/:id',
           component: () => import('../components/dashboard/MasInfo.vue'),
         },
         {
-          name: 'proceso',
-          path: 'proceso',
+          name: 'solicitud',
+          path: 'solicitud/:id',
           component: () => import('../components/dashboard/Proceso.vue'),
         },
         {
