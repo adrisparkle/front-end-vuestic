@@ -14,22 +14,18 @@
                   <img :src="customer.picture" :alt="customer.name">
                 </va-avatar>
               </va-item-section>
-
               <va-item-section>
                 <va-item-label>
                   {{ customer.name }}
                 </va-item-label>
-
                 <va-item-label caption>
                   {{ customer.address }}
                 </va-item-label>
               </va-item-section>
-
               <va-item-section side>
                 <va-icon name="fa fa-eye" color="gray" />
               </va-item-section>
             </va-item>
-
             <va-list-separator v-if="i < customers.length - 1" :key="'separator' + customer.id" />
           </template>
         </va-list>

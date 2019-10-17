@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import AuthLayout from '../components/auth/AuthLayout'
 import AppLayout from '../components/admin/AppLayout'
-import Dashboard from '../components/dashboard/Dashboard.vue'
 
 Vue.use(Router)
 
@@ -91,9 +90,29 @@ export default new Router({
           component: () => import('../components/dashboard/MasInfo.vue'),
         },
         {
+          name: 'oferta',
+          path: 'oferta/:id',
+          component: () => import('../components/dashboard/Oferta.vue'),
+        },
+        {
+          name: 'pedido',
+          path: 'pedido/:id',
+          component: () => import('../components/dashboard/Pedido.vue'),
+        },
+        {
+          name: 'factura',
+          path: 'factura/:id',
+          component: () => import('../components/dashboard/Factura.vue'),
+        },
+        {
+          name: 'pago',
+          path: 'pago/:id',
+          component: () => import('../components/dashboard/Pago.vue'),
+        },
+        {
           name: 'solicitud',
           path: 'solicitud/:id',
-          component: () => import('../components/dashboard/Proceso.vue'),
+          component: () => import('../components/dashboard/Solicitud.vue'),
         },
         {
           name: 'statistics',

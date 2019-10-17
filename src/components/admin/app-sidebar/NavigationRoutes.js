@@ -12,20 +12,6 @@ export const navigationRoutes = {
       },
     },
     {
-      name: 'relaciones',
-      displayName: 'menu.relaciones',
-      meta: {
-        iconClass: 'vuestic-iconset-dashboard',
-      },
-    },
-    {
-      name: 'solicitud',
-      displayName: 'menu.solicitudCompra',
-      meta: {
-        iconClass: 'vuestic-iconset-dashboard',
-      },
-    },
-    {
       name: 'statistics',
       displayName: 'menu.statistics',
       meta: {

@@ -460,7 +460,21 @@
       "descripcion":"Descripcion",
       "cantidad":"Cantidad",
       "precio":"Precio",
-      "comentario":"Comentario"
+      "comentario":"Comentario",
+      "codigo":"Código",
+      "descripcion":"Descripción",
+      "observaciones":"Observaciones",
+      "proveedor":"Proveedor",
+      "fecha_necesaria":"Fecha necesaria",
+      "cantidad":"Cantidad",
+      "proyecto":"Proyecto",
+      "almacen":"Almacen",
+      "impuesto":"Impuesto",
+      "precio_unitario":"Precio Unitatio",
+      "total":"Total",
+      "unidad_organizacional":"Unidad Organizacional",
+      "pei_po":"PEI/PO"
+
     }
   },
   "user": {
