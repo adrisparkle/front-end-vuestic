@@ -3,6 +3,14 @@
     <va-card class="flex xs12 lg12">
       <div class="row">
         <div class="flex xs12 lg12">
+          <div align="center" class="buttons">
+            <va-button color="info" :to="{ name: 'dashboard' }">
+              {{ $t('Volver al Inicio') }}
+            </va-button>
+            <va-button color="warning" :to="{ name: 'relaciones' }">
+              {{ $t('Volver al mapa de relaciones') }}
+            </va-button>
+          </div>
           <va-list fit class="mb-2">
             <va-list-label>
               {{ $t('Solicitud de compras') }}
@@ -119,7 +127,6 @@
 <script>
 import axios from 'axios'
 import VaCard from 'vuestic-ui/src/components/vuestic-components/va-card/VaCard'
-
 export default {
   components: { VaCard },
   computed: {

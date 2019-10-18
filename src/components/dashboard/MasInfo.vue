@@ -2,6 +2,11 @@
   <va-card :title="$t('Mapa de relaciones')">
     <div class="row">
       <div class="flex xs12 lg12">
+        <div align="center" class="buttons">
+          <va-button color="info" :to="{ name: 'dashboard' }">
+            {{ $t('Volver al Inicio') }}
+          </va-button>
+        </div>
         <va-list fit class="mb-2">
           <va-card
             no-padding-h
@@ -66,7 +71,7 @@
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ data.numero_oferta }}<br>
                   <b>Fecha: </b>{{ data.fecha_oferta }}<br>
-                  <va-button flat small color="blue" icon="fa fa-plus" @click="oferta(data.numero_oferta)">
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="oferta(data.numero_solicitud)">
                     {{ $t('Ver detalle') }}
                   </va-button>
                 </va-card>
@@ -106,7 +111,7 @@
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ data.numero_pedido }}<br>
                   <b>Fecha: </b>{{ data.fecha_pedido }}<br>
-                  <va-button flat small color="blue" icon="fa fa-plus" @click="pedido(data.numero_pedido)">
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="pedido(data.numero_solicitud)">
                     {{ $t('Ver detalle') }}
                   </va-button>
                 </va-card>
@@ -146,7 +151,7 @@
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ data.numero_factura }}<br>
                   <b>Fecha: </b>{{ data.fecha_factura }}<br>
-                  <va-button flat small color="blue" icon="fa fa-plus" @click="factura(data.numero_factura)">
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="factura(data.numero_solicitud)">
                     {{ $t('Ver detalle') }}
                   </va-button>
                 </va-card>
@@ -186,7 +191,7 @@
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ data.numero_pago }}<br>
                   <b>Fecha: </b>{{ data.fecha_pago }}<br>
-                  <va-button flat small color="blue" icon="fa fa-plus" @click="pago(data.numero_pago)">
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="pago(data.numero_solicitud)">
                     {{ $t('Ver detalle') }}
                   </va-button>
                 </va-card>

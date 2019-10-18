@@ -473,7 +473,9 @@
       "precio_unitario":"Precio Unitatio",
       "total":"Total",
       "unidad_organizacional":"Unidad Organizacional",
-      "pei_po":"PEI/PO"
+      "pei_po":"PEI/PO",
+      "sujeto_a_retencion":"Sujeto a retención",
+      "retencion_a_aplicar":"Retencion a aplicar"
 
     }
   },
