@@ -1,23 +1,36 @@
 <template>
   <va-card :title="$t('Búsqueda de solicitudes de compra')">
+    <div class="row align--center">
+      <div class="flex xs12 md6">
+        <va-input
+          :value="term"
+          :placeholder="$t('tables.searchByName')"
+          @input="search"
+        >
+          <va-icon name="fa fa-search" slot="prepend" />
+        </va-input>
+      </div>
+
+      <div class="flex xs12 md3 offset--md3">
+        <va-select
+          v-model="perPage"
+          :label="$t('tables.perPage')"
+          :options="perPageOptions"
+        />
+      </div>
+    </div>
+
     <va-data-table
       :fields="fields"
-      :data="items"
-      :loading="loading"
-      :totalPages="totalPages"
+      :data="filteredData"
       :per-page="parseInt(perPage)"
-      @page-selected="readItems"
-      api-mode
+      :loading="loading"
+      @row-clicked="showUser"
+      clickable
     >
       <template slot="actions" slot-scope="props">
         <va-button flat small color="blue" icon="fa fa-plus"
                    @click="see(props.rowData.id)">
-          {{ $t('icons.mas_info') }}
-        </va-button>
-      </template>
-      <template slot="prueba" slot-scope="props">
-        <va-button flat small color="orange" icon="fa fa-plus"
-                   @click="select(props.rowData)">
           {{ $t('icons.mas_info') }}
         </va-button>
       </template>
@@ -26,17 +39,17 @@
 </template>
 
 <script>
-/* eslint-disable camelcase */
+import { debounce } from 'lodash'
 import axios from 'axios'
 import router from '../../router/index'
-
 export default {
   data () {
     return {
-      page: 1,
+      term: null,
+      perPage: '5',
+      perPageOptions: ['5', '10', '15', '20'],
       items: [],
       loading: false,
-      perPage: '6',
     }
   },
   computed: {
@@ -68,36 +81,31 @@ export default {
         sortField: 'status',
       }]
     },
+    filteredData () {
+      if (!this.term || this.term.length < 1) {
+        return this.items
+      }
+
+      return this.items.filter(item => {
+        return item.solicitante.toLowerCase().startsWith(this.term.toLowerCase())
+      })
+    },
   },
   created () {
     this.readItems()
   },
-  filteredData () {
-    if (!this.term || this.term.length < 1) {
-      return this.readItems()
-    }
-    /* aqui se busca solo por nombre de solicitante */
-    return this.readItems().filter(item => {
-      return item.solicitante.toLowerCase().startsWith(this.term.toLowerCase())
-    })
-  },
   methods: {
+    search: debounce(function (term) {
+      this.term = term
+    }, 400),
     readItems (page = 0) {
       this.loading = true
 
-      const params = {
-        per_page: this.per_page,
-        page: page,
-      }
-
-      axios.get('http://192.168.137.112:8008/api/PurchaseSearch/', { params })
+      axios.get('http://192.168.137.112:8008/api/PurchaseSearch/')
         .then(response => {
           this.items = response.data
           this.loading = false
         })
-    },
-    select (id) {
-      alert('Edit User: ' + JSON.stringify(id))
     },
     see: function (id) {
       router.push('relaciones/' + id)
