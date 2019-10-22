@@ -1,22 +1,30 @@
 <template>
   <va-card :title="$t('Búsqueda de solicitudes de compra')">
     <div class="row align--center">
-      <div class="flex xs12 md6">
+      <div class="flex xs12 md4">
         <va-input
           :value="term"
           :placeholder="$t('tables.searchByName')"
           @input="search"
+          removable
         >
-          <va-icon name="fa fa-search" slot="prepend" />
+          <va-icon name="fa fa-search" slot="prepend"></va-icon>
         </va-input>
       </div>
-
-      <div class="flex xs12 md3 offset--md3">
+      <!--
+      <div class="flex xs12 md3">
+        <va-date-picker
+          :label="$t('Buscar por fecha')"
+          v-model="date"
+          :value="dateSearch"
+        />
+      </div>
+      -->
+      <div class="flex xs12 md2 offset--md6">
         <va-select
           v-model="perPage"
           :label="$t('tables.perPage')"
-          :options="perPageOptions"
-        />
+          :options="perPageOptions"></va-select>
       </div>
     </div>
 
@@ -25,8 +33,6 @@
       :data="filteredData"
       :per-page="parseInt(perPage)"
       :loading="loading"
-      @row-clicked="showUser"
-      clickable
     >
       <template slot="actions" slot-scope="props">
         <va-button flat small color="blue" icon="fa fa-plus"
@@ -46,10 +52,12 @@ export default {
   data () {
     return {
       term: null,
+      dateSearch: null,
       perPage: '5',
       perPageOptions: ['5', '10', '15', '20'],
       items: [],
       loading: false,
+      date: '2019-05-09',
     }
   },
   computed: {
@@ -78,7 +86,6 @@ export default {
         name: '__slot:actions',
         title: this.$t('tables.headings.acciones'),
         width: '10%',
-        sortField: 'status',
       }]
     },
     filteredData () {
