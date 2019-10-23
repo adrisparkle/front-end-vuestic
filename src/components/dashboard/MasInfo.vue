@@ -1,6 +1,6 @@
 <template>
   <va-card :title="$t('Mapa de relaciones')">
-    <div v-if="formData!=null">
+    <div v-if="solicitud1!='', oferta1!='', pedido1!='', mercancia1!='', factura1!='', pago1!=''">
       <div class="flex xs12 lg12">
         <div align="center" class="buttons">
           <va-button color="info" :to="{ name: 'dashboard' }">
@@ -13,8 +13,8 @@
             style="overflow-x: auto"
             class="timelines__horizontal-long"
           >
-            <va-timeline align-top style="min-width: 100px;" class="timelines__horizontal-long__timeline" v-for="data of formData" :key="'item' + data.numero_solicitud">
-              <va-timeline-item active align="center" v-if="data.numero_solicitud != null">
+            <va-timeline align-top style="min-width: 100px;" class="timelines__horizontal-long__timeline">
+              <va-timeline-item active align="center" v-if="solicitud1!=''">
                 <template slot="before">
                   <div
                     class="title text--center"
@@ -27,34 +27,18 @@
                   slot="after"
                   stripe="warning"
                   class="mb-0"
+                  v-for="sol of solicitud1"
+                  :key="'item' + sol.numero_solicitud"
                 >
                   <template slot="title"></template>
-                  <b>N° Doc: </b>{{ data.numero_solicitud }}<br>
-                  <b>Fecha: </b>{{ data.fecha_solicitud }}<br>
-                  <va-button flat small color="blue" icon="fa fa-plus" @click="solicitud(data.numero_solicitud)">
+                  <b>N° Doc: </b>{{ sol.numero_solicitud }}<br>
+                  <b>Fecha: </b>{{ sol.fecha_solicitud }}<br>
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="solicitud(sol.numero_solicitud)">
                     {{ $t('Ver detalle') }}
                   </va-button>
                 </va-card>
               </va-timeline-item>
-              <va-timeline-item align="center" v-else-if="data.numero_solicitud == null">
-                <template slot="before">
-                  <div
-                    class="title text--center"
-                    :style="{color: $themes.dark}"
-                  >
-                    Solicitud de compra
-                  </div>
-                </template>
-                <va-card
-                  slot="after"
-                  stripe="gray"
-                  class="mb-0"
-                >
-                  <template slot="title"></template>
-                  Aún no hay información.
-                </va-card>
-              </va-timeline-item>
-              <va-timeline-item active align="center" v-if="data.numero_oferta != null">
+              <va-timeline-item active align="center" v-if="oferta1!=''">
                 <template slot="before">
                   <div
                     class="title text--center"
@@ -67,16 +51,18 @@
                   slot="after"
                   stripe="warning"
                   class="mb-0"
+                  v-for="ofe of oferta1"
+                  :key="'item' + ofe.numero_solicitud"
                 >
                   <template slot="title"></template>
-                  <b>N° Doc: </b>{{ data.numero_oferta }}<br>
-                  <b>Fecha: </b>{{ data.fecha_oferta }}<br>
-                  <va-button flat small color="blue" icon="fa fa-plus" @click="oferta(data.numero_solicitud)">
+                  <b>N° Doc: </b>{{ ofe.numero_oferta }}<br>
+                  <b>Fecha: </b>{{ ofe.fecha_oferta }}<br>
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="oferta(ofe.numero_solicitud)">
                     {{ $t('Ver detalle') }}
                   </va-button>
                 </va-card>
               </va-timeline-item>
-              <va-timeline-item active align="center" v-if="data.numero_pedido != null">
+              <va-timeline-item active align="center" v-if="pedido1!=''">
                 <template slot="before">
                   <div
                     class="title text--center"
@@ -89,16 +75,17 @@
                   slot="after"
                   stripe="warning"
                   class="mb-0"
+                  v-for="ped of pedido1" :key="'item' + ped.numero_solicitud"
                 >
                   <template slot="title"></template>
-                  <b>N° Doc: </b>{{ data.numero_pedido }}<br>
-                  <b>Fecha: </b>{{ data.fecha_pedido }}<br>
-                  <va-button flat small color="blue" icon="fa fa-plus" @click="pedido(data.numero_solicitud)">
+                  <b>N° Doc: </b>{{ ped.numero_pedido }}<br>
+                  <b>Fecha: </b>{{ ped.fecha_pedido }}<br>
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="pedido(ped.numero_solicitud)">
                     {{ $t('Ver detalle') }}
                   </va-button>
                 </va-card>
               </va-timeline-item>
-              <va-timeline-item active align="center" v-if="data.numero_mercancia != null">
+              <va-timeline-item active align="center" v-if="mercancia1!=''">
                 <template slot="before">
                   <div
                     class="title text--center"
@@ -111,16 +98,17 @@
                   slot="after"
                   stripe="warning"
                   class="mb-0"
+                  v-for="mer of mercancia1" :key="'item' + mer.numero_solicitud"
                 >
                   <template slot="title"></template>
-                  <b>N° Doc: </b>{{ data.numero_mercancia }}<br>
-                  <b>Fecha: </b>{{ data.fecha_mercancia }}<br>
-                  <va-button flat small color="blue" icon="fa fa-plus" @click="pedido(data.numero_solicitud)">
+                  <b>N° Doc: </b>{{ mer.numero_mercancia }}<br>
+                  <b>Fecha: </b>{{ mer.fecha_mercancia }}<br>
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="pedido(mer.numero_solicitud)">
                     {{ $t('Ver detalle') }}
                   </va-button>
                 </va-card>
               </va-timeline-item>
-              <va-timeline-item active align="center" v-if="data.numero_factura != null">
+              <va-timeline-item active align="center" v-if="factura1!=''">
                 <template slot="before">
                   <div
                     class="title text--center"
@@ -133,16 +121,17 @@
                   slot="after"
                   stripe="warning"
                   class="mb-0"
+                  v-for="fac of factura1" :key="'item' + fac.numero_solicitud"
                 >
                   <template slot="title"></template>
-                  <b>N° Doc: </b>{{ data.numero_factura }}<br>
-                  <b>Fecha: </b>{{ data.fecha_factura }}<br>
-                  <va-button flat small color="blue" icon="fa fa-plus" @click="factura(data.numero_solicitud)">
+                  <b>N° Doc: </b>{{ fac.numero_factura }}<br>
+                  <b>Fecha: </b>{{ fac.fecha_factura }}<br>
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="factura(fac.numero_solicitud)">
                     {{ $t('Ver detalle') }}
                   </va-button>
                 </va-card>
               </va-timeline-item>
-              <va-timeline-item active align="center" v-if="data.numero_pago != null">
+              <va-timeline-item active align="center" v-if="pago1!=''">
                 <template slot="before">
                   <div
                     class="title text--center"
@@ -155,11 +144,12 @@
                   slot="after"
                   stripe="warning"
                   class="mb-0"
+                  v-for="pag of pago1" :key="'item' + pag.numero_solicitud"
                 >
                   <template slot="title"></template>
-                  <b>N° Doc: </b>{{ data.numero_pago }}<br>
-                  <b>Fecha: </b>{{ data.fecha_pago }}<br>
-                  <va-button flat small color="blue" icon="fa fa-plus" @click="pago(data.numero_solicitud)">
+                  <b>N° Doc: </b>{{ pag.numero_pago }}<br>
+                  <b>Fecha: </b>{{ pag.fecha_pago }}<br>
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="pago(pag.numero_solicitud)">
                     {{ $t('Ver detalle') }}
                   </va-button>
                 </va-card>
@@ -167,6 +157,32 @@
             </va-timeline>
           </va-card>
         </va-list>
+      </div>
+    </div>
+    <div v-else-if="solicitud1=='',oferta1=='',pedido1=='',mercancia1=='',factura1=='',pago1==''">
+      <div
+        v-for="(group, i) in groups"
+        :key="i"
+        class="row"
+      >
+        <div
+          v-for="item in group"
+          :key="item"
+          class="flex sm6 lg3"
+        >
+          <div class="text--center pb-4">
+            <div class="flex-center spinner-box">
+              <component
+                :animation-duration="speed"
+                :is="item"
+                :color="spinnersColor"
+                :size="config.size"
+              >
+              </component>
+            </div>
+            <div>{{ $t(item) }}</div>
+          </div>
+        </div>
       </div>
     </div>
   </va-card>
@@ -188,8 +204,23 @@ export default {
   },
   data () {
     return {
-      formData: {
-        id: null,
+      solicitud1: {
+        numero_solicitud: null,
+      },
+      oferta1: {
+        numero_solicitud: null,
+      },
+      pedido1: {
+        numero_solicitud: null,
+      },
+      mercancia1: {
+        numero_solicitud: null,
+      },
+      factura1: {
+        numero_solicitud: null,
+      },
+      pago1: {
+        numero_solicitud: null,
       },
       config: {
         size: 100,
@@ -224,11 +255,54 @@ export default {
     },
   },
   methods: {
-    init: function () {
-      this.formData = this.$route.params
-      axios.get('http://192.168.137.112:8008/api/PurchaseRelations/' + this.formData.id)
+    request: function () {
+      this.solicitud1 = this.$route.params
+      axios.get('http://192.168.137.112:8008/api/solicitud/' + this.solicitud1.id)
         .then(response => {
-          this.formData = response.data
+          this.solicitud1 = response.data
+        })
+        .catch()
+    },
+    quotation: function () {
+      this.oferta1 = this.$route.params
+      axios.get('http://192.168.137.112:8008/api/oferta/' + this.oferta1.id)
+        .then(response => {
+          this.oferta1 = response.data
+        })
+        .catch()
+    },
+    order: function () {
+      this.pedido1 = this.$route.params
+      axios.get('http://192.168.137.112:8008/api/pedido/' + this.pedido1.id)
+        .then(response => {
+          this.pedido1 = response.data
+        })
+        .catch()
+    },
+
+    merchandise: function () {
+      this.mercancia1 = this.$route.params
+      axios.get('http://192.168.137.112:8008/api/mercancia/' + this.mercancia1.id)
+        .then(response => {
+          this.mercancia1 = response.data
+        })
+        .catch()
+    },
+
+    check: function () {
+      this.factura1 = this.$route.params
+      axios.get('http://192.168.137.112:8008/api/factura/' + this.factura1.id)
+        .then(response => {
+          this.factura1 = response.data
+        })
+        .catch()
+    },
+
+    payment: function () {
+      this.pago1 = this.$route.params
+      axios.get('http://192.168.137.112:8008/api/pago/' + this.pago1.id)
+        .then(response => {
+          this.pago1 = response.data
         })
         .catch()
     },
@@ -240,6 +314,9 @@ export default {
     },
     pedido: function (id) {
       router.push('../pedido/' + id)
+    },
+    mercancia: function (id) {
+      router.push('../mercancia/' + id)
     },
     factura: function (id) {
       router.push('../factura/' + id)
@@ -258,7 +335,12 @@ export default {
     },
   },
   created () {
-    this.init()
+    this.request()
+    this.quotation()
+    this.order()
+    this.merchandise()
+    this.check()
+    this.payment()
   },
 }
 </script>
