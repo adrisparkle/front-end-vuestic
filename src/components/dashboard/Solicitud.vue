@@ -25,7 +25,7 @@
                     {{ data.codigo_solicitante }}
                   </td>
                   <td class="bla" align="right">
-                    <b>Regional</b>
+                    <b>Regional:</b>
                   </td>
                   <td class="bla">
                     {{ data.regional }}
@@ -39,7 +39,7 @@
                     {{ data.solicitante }}
                   </td>
                   <td class="bla" align="right">
-                    <b>Fecha de contabilización</b>
+                    <b>Fecha de contabilización:</b>
                   </td>
                   <td class="bla">
                     {{ data.fecha_contabilizacion }}
@@ -67,7 +67,7 @@
                     {{ data.id }}
                   </td>
                   <td class="bla" align="right">
-                    <b>Fecha de documento</b>
+                    <b>Fecha de documento:</b>
                   </td>
                   <td class="bla">
                     {{ data.fecha_documento }}
@@ -81,7 +81,7 @@
                     {{ data.unidad_organizacional }}
                   </td>
                   <td class="bla" align="right">
-                    <b>Fecha requerida</b>
+                    <b>Fecha requerida:</b>
                   </td>
                   <td class="bla">
                     {{ data.fecha_requerida }}

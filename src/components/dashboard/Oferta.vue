@@ -1,13 +1,13 @@
 <template>
   <div class="lists">
     <va-card class="flex xs12 lg12">
-      <div class="row">
+      <div class="row" v-for="data of formData" :key="'item' + data.id">
         <div class="flex xs12 lg12">
           <div align="center" class="buttons">
             <va-button color="info" :to="{ name: 'dashboard' }">
               {{ $t('Volver al Inicio') }}
             </va-button>
-            <va-button color="warning" :to="{ name: 'relaciones' }">
+            <va-button color="warning" @click="volver(data.numero_solicitud)">
               {{ $t('Volver al mapa de relaciones') }}
             </va-button>
           </div>
@@ -15,8 +15,8 @@
             <va-list-label>
               {{ $t('Oferta de compra') }}
             </va-list-label>
-            <template v-for="data of formData">
-              <table :key="'item' + data.id" width="100%" class="bla">
+            <template>
+              <table  width="100%" class="bla">
                 <tr>
                   <td align="right" class="bla">
                     <b># Proveedor: </b>
@@ -67,7 +67,7 @@
                     {{ data.numero_documento }}
                   </td>
                   <td class="bla" align="right">
-                    <b>Fecha de documento</b>
+                    <b>Fecha de documento:</b>
                   </td>
                   <td class="bla">
                     {{ data.fecha_documento }}
@@ -81,7 +81,7 @@
                   {{ data.unidad_organizacional }}
                 </td>
                 <td class="bla" align="right">
-                  <b>Fecha requerida</b>
+                  <b>Fecha requerida:</b>
                 </td>
                 <td class="bla">
                   {{ data.fecha_necesaria }}
@@ -140,6 +140,7 @@
 </template>
 <script>
 import axios from 'axios'
+import router from '../../router/index'
 import VaCard from 'vuestic-ui/src/components/vuestic-components/va-card/VaCard'
 
 export default {
@@ -219,11 +220,14 @@ export default {
     },
     readItems: function () {
       this.items = this.$route.params
-      axios.get('http://192.168.137.112:8008/api/PurchaseQuotationDetail/' + this.items.id)
+      axios.get('http://192.168.137.112:8008/api/PurchaseQuotationDetail/' + this.formData.id)
         .then(response => {
           this.items = response.data
         })
         .catch()
+    },
+    volver: function (id) {
+      router.push('../relaciones/' + id)
     },
   },
   created () {

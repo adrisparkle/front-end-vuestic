@@ -1,13 +1,13 @@
 <template>
   <div class="lists">
     <va-card class="flex xs12 lg12">
-      <div class="row">
+      <div class="row" v-for="data of formData" :key="'item' + data.id">
         <div class="flex xs12 lg12">
           <div align="center" class="buttons">
             <va-button color="info" :to="{ name: 'dashboard' }">
               {{ $t('Volver al Inicio') }}
             </va-button>
-            <va-button color="warning" :to="{ name: 'relaciones' }">
+            <va-button color="warning" @click="volver(data.numero_solicitud)">
               {{ $t('Volver al mapa de relaciones') }}
             </va-button>
           </div>
@@ -15,8 +15,8 @@
             <va-list-label>
               {{ $t('Pagos efectuados') }}
             </va-list-label>
-            <template v-for="data of formData">
-              <table :key="'item' + data.id" width="100%" class="bla">
+            <template >
+              <table  width="100%" class="bla">
                 <tr>
                   <td align="right" class="bla">
                     <b># Proveedor: </b>
@@ -25,7 +25,7 @@
                     {{ data.codigo_proveedor }}
                   </td>
                   <td class="bla" align="right">
-                    <b>Regional</b>
+                    <b>Regional:</b>
                   </td>
                   <td class="bla">
                     {{ data.regional }}
@@ -39,7 +39,7 @@
                     {{ data.proveedor }}
                   </td>
                   <td class="bla" align="right">
-                    <b>Fecha de contabilización</b>
+                    <b>Fecha de contabilización:</b>
                   </td>
                   <td class="bla">
                     {{ data.fecha_contabilizacion }}
@@ -67,7 +67,7 @@
                     {{ data.numero_documento }}
                   </td>
                   <td class="bla" align="right">
-                    <b>Fecha de documento</b>
+                    <b>Fecha de documento: </b>
                   </td>
                   <td class="bla">
                     {{ data.fecha_documento }}
@@ -101,6 +101,7 @@
 <script>
 import axios from 'axios'
 import VaCard from 'vuestic-ui/src/components/vuestic-components/va-card/VaCard'
+import router from '../../router/index'
 
 export default {
   components: { VaCard },
@@ -188,6 +189,9 @@ export default {
           this.items = response.data
         })
         .catch()
+    },
+    volver: function (id) {
+      router.push('../relaciones/' + id)
     },
   },
   created () {

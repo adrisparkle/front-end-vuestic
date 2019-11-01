@@ -1,13 +1,13 @@
 <template>
   <div class="lists">
     <va-card class="flex xs12 lg12">
-      <div class="row">
+      <div class="row" v-for="data of formData" :key="'item' + data.id">
         <div class="flex xs12 lg12">
           <div align="center" class="buttons">
             <va-button color="info" :to="{ name: 'dashboard' }">
               {{ $t('Volver al Inicio') }}
             </va-button>
-            <va-button color="warning" :to="{ name: 'relaciones' }">
+            <va-button color="warning" @click="volver(data.numero_solicitud)">
               {{ $t('Volver al mapa de relaciones') }}
             </va-button>
           </div>
@@ -15,8 +15,8 @@
             <va-list-label>
               {{ $t('Factura de proveedores') }}
             </va-list-label>
-            <template v-for="data of formData">
-              <table :key="'item' + data.id" width="100%" class="bla">
+            <template>
+              <table  width="100%" class="bla">
                 <tr>
                   <td align="right" class="bla">
                     <b># Proveedor: </b>
@@ -67,7 +67,7 @@
                     {{ data.numero_documento }}
                   </td>
                   <td class="bla" align="right">
-                    <b>Fecha de documento</b>
+                    <b>Fecha de documento:</b>
                   </td>
                   <td class="bla">
                     {{ data.fecha_documento }}
@@ -81,7 +81,7 @@
                     {{ data.unidad_organizacional }}
                   </td>
                   <td class="bla" align="right">
-                    <b># Factura</b>
+                    <b># Factura:</b>
                   </td>
                   <td class="bla">
                     {{ data.numero_factura }}
@@ -127,7 +127,7 @@
 <script>
 import axios from 'axios'
 import VaCard from 'vuestic-ui/src/components/vuestic-components/va-card/VaCard'
-
+import router from '../../router/index'
 export default {
   components: { VaCard },
   computed: {
@@ -210,6 +210,9 @@ export default {
           this.items = response.data
         })
         .catch()
+    },
+    volver: function (id) {
+      router.push('../relaciones/' + id)
     },
   },
   created () {

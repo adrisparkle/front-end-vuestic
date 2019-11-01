@@ -1,6 +1,6 @@
 <template>
   <va-card :title="$t('Mapa de relaciones')">
-    <div v-if="solicitud1!='', oferta1!='', pedido1!='', mercancia1!='', factura1!='', pago1!=''">
+    <div v-if="solicitud1!=''">
       <div class="flex xs12 lg12">
         <div align="center" class="buttons">
           <va-button color="info" :to="{ name: 'dashboard' }">
@@ -57,7 +57,7 @@
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ ofe.numero_oferta }}<br>
                   <b>Fecha: </b>{{ ofe.fecha_oferta }}<br>
-                  <va-button flat small color="blue" icon="fa fa-plus" @click="oferta(ofe.numero_solicitud)">
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="oferta(ofe.numero_oferta)">
                     {{ $t('Ver detalle') }}
                   </va-button>
                 </va-card>
@@ -80,7 +80,7 @@
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ ped.numero_pedido }}<br>
                   <b>Fecha: </b>{{ ped.fecha_pedido }}<br>
-                  <va-button flat small color="blue" icon="fa fa-plus" @click="pedido(ped.numero_solicitud)">
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="pedido(ped.numero_pedido)">
                     {{ $t('Ver detalle') }}
                   </va-button>
                 </va-card>
@@ -126,7 +126,7 @@
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ fac.numero_factura }}<br>
                   <b>Fecha: </b>{{ fac.fecha_factura }}<br>
-                  <va-button flat small color="blue" icon="fa fa-plus" @click="factura(fac.numero_solicitud)">
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="factura(fac.numero_factura)">
                     {{ $t('Ver detalle') }}
                   </va-button>
                 </va-card>
@@ -149,7 +149,7 @@
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ pag.numero_pago }}<br>
                   <b>Fecha: </b>{{ pag.fecha_pago }}<br>
-                  <va-button flat small color="blue" icon="fa fa-plus" @click="pago(pag.numero_solicitud)">
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="pago(pag.numero_pago)">
                     {{ $t('Ver detalle') }}
                   </va-button>
                 </va-card>
@@ -159,7 +159,7 @@
         </va-list>
       </div>
     </div>
-    <div v-else-if="solicitud1=='',oferta1=='',pedido1=='',mercancia1=='',factura1=='',pago1==''">
+    <div v-else-if="solicitud1==''">
       <div
         v-for="(group, i) in groups"
         :key="i"
@@ -168,7 +168,7 @@
         <div
           v-for="item in group"
           :key="item"
-          class="flex sm6 lg3"
+          class="flex sm12 lg12"
         >
           <div class="text--center pb-4">
             <div class="flex-center spinner-box">
@@ -180,7 +180,7 @@
               >
               </component>
             </div>
-            <div>{{ $t(item) }}</div>
+            <div>{{ $t('¡Ups! No existe información.') }}</div>
           </div>
         </div>
       </div>
@@ -223,7 +223,7 @@ export default {
         numero_solicitud: null,
       },
       config: {
-        size: 100,
+        size: 150,
         group: 1,
         duration: 1500,
       },
@@ -327,7 +327,7 @@ export default {
     groupItems (items, groupSize) {
       let grouped = []
 
-      for (let i = 1; i < 2; i += groupSize) {
+      for (let i = 11; i < 12; i += groupSize) {
         grouped.push(items.slice(i, i + groupSize))
       }
 

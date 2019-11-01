@@ -473,6 +473,8 @@
       "precio_unitario":"Precio Unitatio",
       "total":"Total",
       "unidad_organizacional":"Unidad Organizacional",
+      "saldo_presupuestado":"Saldo Presupuestado",
+      "motivo_salida":"Motivo Salida",
       "pei_po":"PEI/PO",
       "sujeto_a_retencion":"Sujeto a retención",
       "retencion_a_aplicar":"Retencion a aplicar"
