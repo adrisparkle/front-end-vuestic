@@ -95,7 +95,7 @@
       <div class="flex xs12 lg12">
         <va-card>
           <va-list-label>
-            {{ $t('Detalle de la solicitud') }}
+            {{ $t('Detalle de la solicitud de compra') }}
           </va-list-label>
           <va-data-table
             :fields="fields"

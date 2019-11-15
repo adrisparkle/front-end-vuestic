@@ -11,6 +11,7 @@ export const navigationRoutes = {
         iconClass: 'vuestic-iconset-dashboard',
       },
     },
+
     {
       name: 'statistics',
       displayName: 'menu.statistics',

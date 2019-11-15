@@ -102,7 +102,7 @@ export default new Router({
         {
           name: 'mercancia',
           path: 'mercancia/:id',
-          component: () => import('../components/dashboard/Pedido.vue'),
+          component: () => import('../components/dashboard/Mercancia.vue'),
         },
         {
           name: 'factura',

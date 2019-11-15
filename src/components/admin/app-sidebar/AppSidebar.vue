@@ -1,7 +1,7 @@
 <template>
   <va-sidebar :minimized="minimized">
+    <img src="colores-horizontal-LP.jpg">
     <template slot="menu">
-
       <template v-for="(item, key) in items">
         <va-sidebar-link-group
           :key="key"

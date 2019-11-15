@@ -13,7 +13,7 @@
           </div>
           <va-list fit class="mb-2">
             <va-list-label>
-              {{ $t('Pedido') }}
+              {{ $t('Entrada de mercancias') }}
             </va-list-label>
             <template>
               <table width="100%" class="bla">
@@ -89,7 +89,7 @@
       <div class="flex xs12 lg12">
         <va-card>
           <va-list-label>
-            {{ $t('Detalle del pedido') }}
+            {{ $t('Detalle de la mercancia') }}
           </va-list-label>
           <va-data-table
             :fields="fields"
@@ -196,7 +196,7 @@ export default {
   methods: {
     init: function () {
       this.formData = this.$route.params
-      axios.get('http://192.168.137.112:8008/api/PurchaseOrder/' + this.formData.id)
+      axios.get('http://192.168.137.112:8008/api/PurchaseDN/' + this.formData.id)
         .then(response => {
           this.formData = response.data
         })
@@ -204,7 +204,7 @@ export default {
     },
     readItems: function () {
       this.items = this.$route.params
-      axios.get('http://192.168.137.112:8008/api/PurchaseOrderDetail/' + this.items.id)
+      axios.get('http://192.168.137.112:8008/api/PurchaseDNDetail/' + this.items.id)
         .then(response => {
           this.items = response.data
         })

@@ -1,5 +1,5 @@
 <template>
-<form @submit.prevent="onsubmit">
+<form @submit.prevent="onsubmit" >
   <va-input
     v-model="email"
     type="email"
@@ -18,6 +18,9 @@
   <div class="d-flex justify--center mt-3">
     <va-button type="submit" class="my-0">{{ $t('auth.submit') }}</va-button>
   </div>
+  <template v-if="youShallNoPass">
+    <small id="error">*Usuario o contraseña invalidos.</small>
+  </template>
 </form>
 </template>
 
@@ -28,7 +31,6 @@ export default {
     return {
       email: '',
       password: '',
-      keepLoggedIn: false,
       emailErrors: [],
       passwordErrors: [],
     }
@@ -37,7 +39,13 @@ export default {
     formReady () {
       return !this.emailErrors.length && !this.passwordErrors.length
     },
+    youShallNoPass: {
+      get () {
+        return localStorage.getItem('token') === '401'
+      },
+    },
   },
+  /* fijarse como va el login en el front porque el del back teoricamente ya esta */
   methods: {
     onsubmit () {
       this.emailErrors = this.email ? [] : ['Ingrese su usuario']
@@ -45,7 +53,12 @@ export default {
       if (!this.formReady) {
         return
       }
-      this.$router.push({ name: 'dashboard' })
+      const formData = {
+        username: this.email,
+        password: this.password,
+      }
+      this.$store.dispatch('auth/login', formData)
+      /* this.$router.push({ name: 'dashboard' }) */
     },
   },
 }

@@ -1,9 +1,6 @@
 <template>
   <va-navbar class="app-navbar">
     <header-selector slot="selector" :minimized.sync="minimizedProxy"/>
-    <template slot="logo">
-      Hola
-    </template>
     <div class="app-navbar__actions row flex-nowrap align--center">
       <!--<settings-dropdown-->
         <!--class="va-navbar__item"-->
@@ -37,7 +34,7 @@ export default {
   },
   data () {
     return {
-      userName: 'Usuario',
+      userName: 'A.CENTELLAS.Y@UCB.BO',
     }
   },
   computed: {
