@@ -257,7 +257,7 @@ export default {
   methods: {
     request: function () {
       this.solicitud1 = this.$route.params
-      axios.get('http://192.168.137.112:8008/api/solicitud/' + this.solicitud1.id)
+      axios.get('/solicitud/' + this.solicitud1.id)
         .then(response => {
           this.solicitud1 = response.data
         })
@@ -265,7 +265,7 @@ export default {
     },
     quotation: function () {
       this.oferta1 = this.$route.params
-      axios.get('http://192.168.137.112:8008/api/oferta/' + this.oferta1.id)
+      axios.get('/oferta/' + this.oferta1.id)
         .then(response => {
           this.oferta1 = response.data
         })
@@ -273,7 +273,7 @@ export default {
     },
     order: function () {
       this.pedido1 = this.$route.params
-      axios.get('http://192.168.137.112:8008/api/pedido/' + this.pedido1.id)
+      axios.get('/pedido/' + this.pedido1.id)
         .then(response => {
           this.pedido1 = response.data
         })
@@ -282,7 +282,7 @@ export default {
 
     merchandise: function () {
       this.mercancia1 = this.$route.params
-      axios.get('http://192.168.137.112:8008/api/mercancia/' + this.mercancia1.id)
+      axios.get('/mercancia/' + this.mercancia1.id)
         .then(response => {
           this.mercancia1 = response.data
         })
@@ -291,7 +291,7 @@ export default {
 
     check: function () {
       this.factura1 = this.$route.params
-      axios.get('http://192.168.137.112:8008/api/factura/' + this.factura1.id)
+      axios.get('/factura/' + this.factura1.id)
         .then(response => {
           this.factura1 = response.data
         })
@@ -300,7 +300,7 @@ export default {
 
     payment: function () {
       this.pago1 = this.$route.params
-      axios.get('http://192.168.137.112:8008/api/pago/' + this.pago1.id)
+      axios.get('/pago/' + this.pago1.id)
         .then(response => {
           this.pago1 = response.data
         })

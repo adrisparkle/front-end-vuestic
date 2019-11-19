@@ -196,7 +196,7 @@ export default {
   methods: {
     init: function () {
       this.formData = this.$route.params
-      axios.get('http://192.168.137.112:8008/api/PurchaseDN/' + this.formData.id)
+      axios.get('/PurchaseDN/' + this.formData.id)
         .then(response => {
           this.formData = response.data
         })
@@ -204,7 +204,7 @@ export default {
     },
     readItems: function () {
       this.items = this.$route.params
-      axios.get('http://192.168.137.112:8008/api/PurchaseDNDetail/' + this.items.id)
+      axios.get('/PurchaseDNDetail/' + this.items.id)
         .then(response => {
           this.items = response.data
         })

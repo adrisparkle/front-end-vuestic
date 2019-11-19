@@ -108,7 +108,7 @@ export default {
     readItems (page = 0) {
       this.loading = true
 
-      axios.get('http://192.168.137.112:8008/api/PurchaseSearch/')
+      axios.get('/PurchaseSearch/')
         .then(response => {
           this.items = response.data
           this.loading = false
