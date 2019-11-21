@@ -106,7 +106,7 @@
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ mer.numero_mercancia }}<br>
                   <b>Fecha: </b>{{ mer.fecha_mercancia }}<br>
-                  <va-button flat small color="blue" icon="fa fa-plus" @click="pedido(mer.numero_mercancia)">
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="mercancia(mer.numero_mercancia)">
                     {{ $t('Ver detalle') }}
                   </va-button>
                 </va-card>
