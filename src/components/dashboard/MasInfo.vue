@@ -1,4 +1,7 @@
 <template>
+  <div class="vld-parent">
+    <loading :active.sync="isLoading"
+             :is-full-page="true"></loading>
   <va-card :title="$t('Mapa de relaciones')">
     <div v-if="solicitud1!=''">
       <div class="flex xs12 lg12">
@@ -13,7 +16,7 @@
             style="overflow-x: auto"
             class="timelines__horizontal-long"
           >
-            <va-timeline align-top style="min-width: 100px;" class="timelines__horizontal-long__timeline">
+            <va-timeline align-top style="max-width: 120px;" class="timelines__horizontal-long__timeline">
               <va-timeline-item active align="center" v-if="solicitud1!=''">
                 <template slot="before">
                   <div
@@ -159,51 +162,19 @@
         </va-list>
       </div>
     </div>
-    <div v-else-if="solicitud1==''">
-      <div
-        v-for="(group, i) in groups"
-        :key="i"
-        class="row"
-      >
-        <div
-          v-for="item in group"
-          :key="item"
-          class="flex sm12 lg12"
-        >
-          <div class="text--center pb-4">
-            <div class="flex-center spinner-box">
-              <component
-                :animation-duration="speed"
-                :is="item"
-                :color="spinnersColor"
-                :size="config.size"
-              >
-              </component>
-            </div>
-            <div>{{ $t('¡Ups! No existe información.') }}</div>
-          </div>
-        </div>
-      </div>
-    </div>
   </va-card>
+  </div>
 </template>
 <script>
 import axios from 'axios'
 import router from '../../router/index'
-import * as spinners from 'epic-spinners'
-import { mapGetters } from 'vuex'
-import VaIconFaster
-  from 'vuestic-ui/src/components/vuestic-components/va-icon/va-iconset/VaIconFaster'
-import VaIconSlower
-  from 'vuestic-ui/src/components/vuestic-components/va-icon/va-iconset/VaIconSlower'
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
 export default {
-  components: {
-    ...spinners,
-    VaIconFaster,
-    VaIconSlower,
-  },
   data () {
     return {
+      isLoading: false,
+      fullPage: true,
       solicitud1: {
         numero_solicitud: null,
       },
@@ -222,39 +193,18 @@ export default {
       pago1: {
         numero_solicitud: null,
       },
-      config: {
-        size: 150,
-        group: 1,
-        duration: 1500,
-      },
-      spinnersColor: this.$themes.primary,
-      currentDuration: 1500,
-      sliderSize: {
-        formatter: v => `${v}px`,
-        min: 40,
-        max: 100,
-      },
-      sliderDuration: {
-        min: 1000,
-        max: 2000,
-      },
     }
   },
-  computed: {
-    ...mapGetters(['palette']),
-    speed () {
-      return this.sliderDuration.min + this.sliderDuration.max - this.currentDuration
-    },
-    groups () {
-      return this.groupItems(Object.keys(spinners), this.config.group)
-    },
-  },
-  filters: {
-    displayName (name) {
-      return name.replace('Spinner', '').match(/[A-Z][a-z]+/g).join(' ')
-    },
+  components: {
+    Loading,
   },
   methods: {
+    doAjax () {
+      this.isLoading = true
+      setTimeout(() => {
+        this.isLoading = false
+      }, 3000)
+    },
     request: function () {
       this.solicitud1 = this.$route.params
       axios.get('/solicitud/' + this.solicitud1.id)
@@ -324,17 +274,9 @@ export default {
     pago: function (id) {
       router.push('../pago/' + id)
     },
-    groupItems (items, groupSize) {
-      let grouped = []
-
-      for (let i = 11; i < 12; i += groupSize) {
-        grouped.push(items.slice(i, i + groupSize))
-      }
-
-      return grouped
-    },
   },
   created () {
+    this.doAjax()
     this.request()
     this.quotation()
     this.order()

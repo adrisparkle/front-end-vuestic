@@ -1,6 +1,8 @@
 <template>
   <va-navbar class="app-navbar">
-    <header-selector slot="selector" :minimized.sync="minimizedProxy"/>
+    <div align="left">
+      Universidad
+    </div>
     <div class="app-navbar__actions row flex-nowrap align--center">
       <!--<settings-dropdown-->
         <!--class="va-navbar__item"-->

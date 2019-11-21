@@ -1,11 +1,11 @@
 <template>
-  <va-sidebar :minimized="minimized">
+  <va-sidebar :minimized="true">
     <img src="colores-horizontal-LP.jpg">
     <template slot="menu">
       <template v-for="(item, key) in items">
         <va-sidebar-link-group
           :key="key"
-          :minimized="minimized"
+          :minimized="true"
           :icon="[ 'sidebar-menu-item-icon vuestic-iconset', item.meta.iconClass ]"
           v-if="item.children"
           :title="$t(item.displayName)"
@@ -21,7 +21,7 @@
         <va-sidebar-link
           v-else
           :key="key"
-          :minimized="minimized"
+          :minimized="true"
           :activeByDefault="item.name === $route.name"
           :icon="[ 'sidebar-menu-item-icon vuestic-iconset', item.meta.iconClass ]"
           :to="{ name: item.name }">

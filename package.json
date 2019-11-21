@@ -44,6 +44,7 @@
     "vue-color": "^2.7.0",
     "vue-epic-bus": "^0.1.2",
     "vue-gtm": "^2.0.0",
+    "vue-loading-overlay": "^3.2.0",
     "vue-router": "^3.0.6",
     "vue-yandex-maps": "^0.8.14",
     "vuestic-ui": "0.1.8",
