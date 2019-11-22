@@ -3,295 +3,296 @@
     <loading :active.sync="isLoading"
              :is-full-page="true"></loading>
     <div class="lists">
-    <va-card class="flex xs12 lg12" v-for="data of formData" :key="'item' + data.id">
-      <div align="center" class="buttons">
-        <va-button color="info" :to="{ name: 'dashboard' }">
-          {{ $t('Volver al Inicio') }}
-        </va-button>
-        <va-button color="warning" :to="{ name: 'relaciones' }">
-          {{ $t('Volver al mapa de relaciones') }}
-        </va-button>
-      </div>
-      <div class="row">
-        <div class="flex xs6 lg6">
-          <va-list fit class="mb-2">
-            <va-list-label>
-              {{ $t('Solicitud de compras') }}
-            </va-list-label>
-            <template >
-              <table width="100%" class="bla">
-                <tr>
-                  <td align="right" class="bla">
-                    <b># Solicitante: </b>
-                  </td>
-                  <td class="bla">
-                    {{ data.codigo_solicitante }}
-                  </td>
-                  <td class="bla" align="right">
-                    <b>Regional:</b>
-                  </td>
-                  <td class="bla">
-                    {{ data.regional }}
-                  </td>
-                </tr>
-                <tr>
-                  <td class="bla" align="right">
-                    <b>Nombre del solicitante:</b>
-                  </td>
-                  <td class="bla">
-                    {{ data.solicitante }}
-                  </td>
-                  <td class="bla" align="right">
-                    <b>Fecha de contabilización:</b>
-                  </td>
-                  <td class="bla">
-                    {{ data.fecha_contabilizacion }}
-                  </td>
-                </tr>
-                <tr>
-                  <td class="bla" align="right">
-                    <b>Serie:</b>
-                  </td>
-                  <td class="bla">
-                    {{ data.serie }}
-                  </td>
-                  <td class="bla" align="right">
-                    <b>Valido hasta:</b>
-                  </td>
-                  <td class="bla">
-                    {{ data.fecha_valida }}
-                  </td>
-                </tr>
-                <tr>
-                  <td class="bla" align="right">
-                    <b># Documento:</b>
-                  </td>
-                  <td class="bla">
-                    {{ data.id }}
-                  </td>
-                  <td class="bla" align="right">
-                    <b>Fecha de documento:</b>
-                  </td>
-                  <td class="bla">
-                    {{ data.fecha_documento }}
-                  </td>
-                </tr>
-                <tr>
-                  <td class="bla" align="right">
-                    <b>Unidad Organizacional:</b>
-                  </td>
-                  <td class="bla">
-                    {{ data.unidad_organizacional }}
-                  </td>
-                  <td class="bla" align="right">
-                    <b>Fecha requerida:</b>
-                  </td>
-                  <td class="bla">
-                    {{ data.fecha_requerida }}
-                  </td>
-                </tr>
-              </table>
-            </template>
-          </va-list>
+      <va-card class="flex xs12 lg12" v-for="data of formData" :key="'item' + data.id">
+        <div align="center" class="buttons">
+          <va-button color="info" :to="{ name: 'dashboard' }">
+            {{ $t('Volver al Inicio') }}
+          </va-button>
+          <va-button color="warning" :to="{ name: 'relaciones' }">
+            {{ $t('Volver al mapa de relaciones') }}
+          </va-button>
         </div>
-        <div class="flex xs6 lg6">
-          <template>
-          <div>
-              <va-list fit class="mb-2" v-if="data.espicificaciones_tecnicas==null && data.informe_proyecto==null && data.informe_circunstanciado==null && data.pago_directo==null && data.propuesta==null && data.cuadro_comparativo==null && data.acta_evaluacion==null && data.informe_legal==null && data.pliego==null && data.contrato==null">
-                <va-list-label>
-                  {{ $t('Documentos Anexos') }}
-                </va-list-label>
-                <va-item>
-                  <va-item-section>
-                    <va-item-label align="center">
-                      No existen documentos anexos para este proceso.
-                    </va-item-label>
-                    </va-item-section>
-                </va-item>
-              </va-list>
-            <va-list fit class="mb-2" v-else>
+        <div class="row">
+          <div class="flex xs6 lg6">
+            <va-list fit class="mb-2">
               <va-list-label>
-                {{ $t('Documentos Anexos') }}
+                {{ $t('Solicitud de compras') }}
               </va-list-label>
-              <va-item v-if="data.espicificaciones_tecnicas!=null" clickable>
-                <va-item-section>
-                  <va-item-label>
-                    Especificaciones técnicas
-                  </va-item-label>
-                  <va-item-label caption>
-                    {{data.espicificaciones_tecnicas}}
-                  </va-item-label>
-                </va-item-section>
-                <va-item-section side>
-                  <va-icon name="fa fa-eye" color="gray" />
-                </va-item-section>
-              </va-item>
-              <va-item v-if="data.informe_proyecto!=null" clickable>
-                <va-item-section>
-                  <va-item-label>
-                    Informe del Proyecto
-                  </va-item-label>
-                  <va-item-label caption>
-                    {{data.informe_proyecto}}
-                  </va-item-label>
-                </va-item-section>
-                <va-item-section side>
-                  <va-icon name="fa fa-eye" color="gray" />
-                </va-item-section>
-              </va-item>
-              <va-item v-if="data.informe_circunstanciado!=null" clickable>
-                <va-item-section>
-                  <va-item-label>
-                    Informe circunstanciado
-                  </va-item-label>
-                  <va-item-label caption>
-                    {{data.informe_circunstanciado}}
-                  </va-item-label>
-                </va-item-section>
-                <va-item-section side>
-                  <va-icon name="fa fa-eye" color="gray" />
-                </va-item-section>
-              </va-item>
-              <va-item v-if="data.pago_directo!=null" clickable>
-                <va-item-section>
-                  <va-item-label>
-                    Pago directo
-                  </va-item-label>
-                  <va-item-label caption>
-                    {{data.pago_directo}}
-                  </va-item-label>
-                </va-item-section>
-                <va-item-section side>
-                  <va-icon name="fa fa-eye" color="gray" />
-                </va-item-section>
-              </va-item>
-              <va-item v-if="data.propuesta!=null" clickable>
-                <va-item-section>
-                  <va-item-label>
-                    Propuesta
-                  </va-item-label>
-                  <va-item-label caption>
-                    {{data.propuesta}}
-                  </va-item-label>
-                </va-item-section>
-                <va-item-section side>
-                  <va-icon name="fa fa-eye" color="gray" />
-                </va-item-section>
-              </va-item>
-              <va-item v-if="data.cuadro_comparativo!=null" clickable>
-                <va-item-section>
-                  <va-item-label>
-                    Cuadro comparativo
-                  </va-item-label>
-                  <va-item-label caption>
-                    {{data.cuadro_comparativo}}
-                  </va-item-label>
-                </va-item-section>
-                <va-item-section side>
-                  <va-icon name="fa fa-eye" color="gray" />
-                </va-item-section>
-              </va-item>
-              <va-item v-if="data.acta_evaluacion!=null" clickable>
-                <va-item-section>
-                  <va-item-label>
-                    Acta de Evaluación
-                  </va-item-label>
-                  <va-item-label caption>
-                    {{data.acta_evaluacion}}
-                  </va-item-label>
-                </va-item-section>
-                <va-item-section side>
-                  <va-icon name="fa fa-eye" color="gray" />
-                </va-item-section>
-              </va-item>
-              <va-item v-if="data.informe_proceso!=null" clickable>
-                <va-item-section>
-                  <va-item-label>
-                    Informe del proceso
-                  </va-item-label>
-                  <va-item-label caption>
-                    {{informe_proceso}}
-                  </va-item-label>
-                </va-item-section>
-                <va-item-section side>
-                  <va-icon name="fa fa-eye" color="gray" />
-                </va-item-section>
-              </va-item>
-              <va-item v-if="data.informe_legal!=null" clickable>
-                <va-item-section>
-                  <va-item-label>
-                    Informe legal
-                  </va-item-label>
-                  <va-item-label caption>
-                    {{informe_legal}}
-                  </va-item-label>
-                </va-item-section>
-                <va-item-section side>
-                  <va-icon name="fa fa-eye" color="gray" />
-                </va-item-section>
-              </va-item>
-              <va-item v-if="data.pliego!=null" clickable>
-                <va-item-section>
-                  <va-item-label>
-                    Pliego
-                  </va-item-label>
-                  <va-item-label caption>
-                    {{data.pliego}}
-                  </va-item-label>
-                </va-item-section>
-                <va-item-section side>
-                  <va-icon name="fa fa-eye" color="gray" />
-                </va-item-section>
-              </va-item>
-              <va-item v-if="data.contrato!=null" clickable>
-                <va-item-section>
-                  <va-item-label>
-                    Contrato
-                  </va-item-label>
-                  <va-item-label caption>
-                    {{data.contrato}}
-                  </va-item-label>
-                </va-item-section>
-                <va-item-section side>
-                  <va-icon name="fa fa-eye" color="gray" />
-                </va-item-section>
-              </va-item>
+              <template >
+                <table width="100%" class="bla">
+                  <tr>
+                    <td align="right" class="bla">
+                      <b># Solicitante: </b>
+                    </td>
+                    <td class="bla">
+                      {{ data.codigo_solicitante }}
+                    </td>
+                    <td class="bla" align="right">
+                      <b>Regional:</b>
+                    </td>
+                    <td class="bla">
+                      {{ data.regional }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="bla" align="right">
+                      <b>Nombre del solicitante:</b>
+                    </td>
+                    <td class="bla">
+                      {{ data.solicitante }}
+                    </td>
+                    <td class="bla" align="right">
+                      <b>Fecha de contabilización:</b>
+                    </td>
+                    <td class="bla">
+                      {{ data.fecha_contabilizacion }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="bla" align="right">
+                      <b>Serie:</b>
+                    </td>
+                    <td class="bla">
+                      {{ data.serie }}
+                    </td>
+                    <td class="bla" align="right">
+                      <b>Valido hasta:</b>
+                    </td>
+                    <td class="bla">
+                      {{ data.fecha_valida }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="bla" align="right">
+                      <b># Documento:</b>
+                    </td>
+                    <td class="bla">
+                      {{ data.id }}
+                    </td>
+                    <td class="bla" align="right">
+                      <b>Fecha de documento:</b>
+                    </td>
+                    <td class="bla">
+                      {{ data.fecha_documento }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="bla" align="right">
+                      <b>Unidad Organizacional:</b>
+                    </td>
+                    <td class="bla">
+                      {{ data.unidad_organizacional }}
+                    </td>
+                    <td class="bla" align="right">
+                      <b>Fecha requerida:</b>
+                    </td>
+                    <td class="bla">
+                      {{ data.fecha_requerida }}
+                    </td>
+                  </tr>
+                </table>
+              </template>
             </va-list>
           </div>
-          </template>
+          <div class="flex xs6 lg6">
+            <template>
+              <div>
+                <va-list fit class="mb-2" v-if="data.espicificaciones_tecnicas==null && data.informe_proyecto==null && data.informe_circunstanciado==null && data.pago_directo==null && data.propuesta==null && data.cuadro_comparativo==null && data.acta_evaluacion==null && data.informe_legal==null && data.pliego==null && data.contrato==null">
+                  <va-list-label>
+                    {{ $t('Documentos Anexos') }}
+                  </va-list-label>
+                  <va-item>
+                    <va-item-section>
+                      <va-item-label align="center">
+                        No existen documentos anexos para este proceso.
+                      </va-item-label>
+                    </va-item-section>
+                  </va-item>
+                </va-list>
+                <va-list fit class="mb-2" v-else>
+                  <va-list-label>
+                    {{ $t('Documentos Anexos') }}
+                  </va-list-label>
+                  <va-item v-if="data.espicificaciones_tecnicas!=null">
+                    <va-item-section>
+                      <va-item-label>
+                        Especificaciones técnicas
+                      </va-item-label>
+                      <va-item-label caption>
+                        <a v-bind:href="'file:///' + data.espicificaciones_tecnicas">Aqui 1:{{ data.espicificaciones_tecnicas }}</a>
+                        <br>Aqui 2:{{data.espicificaciones_tecnicas}}
+                      </va-item-label>
+                    </va-item-section>
+                    <va-item-section side>
+                      <va-icon name="fa fa-eye" color="gray" />
+                    </va-item-section>
+                  </va-item>
+                  <va-item v-if="data.informe_proyecto!=null" clickable @click="docs(data.informe_proyecto)">
+                    <va-item-section>
+                      <va-item-label>
+                        Informe del Proyecto
+                      </va-item-label>
+                      <va-item-label caption>
+                        {{data.informe_proyecto}}
+                      </va-item-label>
+                    </va-item-section>
+                    <va-item-section side>
+                      <va-icon name="fa fa-eye" color="gray" />
+                    </va-item-section>
+                  </va-item>
+                  <va-item v-if="data.informe_circunstanciado!=null" clickable @click="docs(data.informe_circunstanciado)">
+                    <va-item-section>
+                      <va-item-label>
+                        Informe circunstanciado
+                      </va-item-label>
+                      <va-item-label caption>
+                        {{data.informe_circunstanciado}}
+                      </va-item-label>
+                    </va-item-section>
+                    <va-item-section side>
+                      <va-icon name="fa fa-eye" color="gray" />
+                    </va-item-section>
+                  </va-item>
+                  <va-item v-if="data.pago_directo!=null" clickable>
+                    <va-item-section>
+                      <va-item-label>
+                        Pago directo
+                      </va-item-label>
+                      <va-item-label caption>
+                        {{data.pago_directo}}
+                      </va-item-label>
+                    </va-item-section>
+                    <va-item-section side>
+                      <va-icon name="fa fa-eye" color="gray" />
+                    </va-item-section>
+                  </va-item>
+                  <va-item v-if="data.propuesta!=null" clickable>
+                    <va-item-section>
+                      <va-item-label>
+                        Propuesta
+                      </va-item-label>
+                      <va-item-label caption>
+                        {{data.propuesta}}
+                      </va-item-label>
+                    </va-item-section>
+                    <va-item-section side>
+                      <va-icon name="fa fa-eye" color="gray" />
+                    </va-item-section>
+                  </va-item>
+                  <va-item v-if="data.cuadro_comparativo!=null" clickable>
+                    <va-item-section>
+                      <va-item-label>
+                        Cuadro comparativo
+                      </va-item-label>
+                      <va-item-label caption>
+                        {{data.cuadro_comparativo}}
+                      </va-item-label>
+                    </va-item-section>
+                    <va-item-section side>
+                      <va-icon name="fa fa-eye" color="gray" />
+                    </va-item-section>
+                  </va-item>
+                  <va-item v-if="data.acta_evaluacion!=null" clickable>
+                    <va-item-section>
+                      <va-item-label>
+                        Acta de Evaluación
+                      </va-item-label>
+                      <va-item-label caption>
+                        {{data.acta_evaluacion}}
+                      </va-item-label>
+                    </va-item-section>
+                    <va-item-section side>
+                      <va-icon name="fa fa-eye" color="gray" />
+                    </va-item-section>
+                  </va-item>
+                  <va-item v-if="data.informe_proceso!=null" clickable>
+                    <va-item-section>
+                      <va-item-label>
+                        Informe del proceso
+                      </va-item-label>
+                      <va-item-label caption>
+                        {{informe_proceso}}
+                      </va-item-label>
+                    </va-item-section>
+                    <va-item-section side>
+                      <va-icon name="fa fa-eye" color="gray" />
+                    </va-item-section>
+                  </va-item>
+                  <va-item v-if="data.informe_legal!=null" clickable>
+                    <va-item-section>
+                      <va-item-label>
+                        Informe legal
+                      </va-item-label>
+                      <va-item-label caption>
+                        {{informe_legal}}
+                      </va-item-label>
+                    </va-item-section>
+                    <va-item-section side>
+                      <va-icon name="fa fa-eye" color="gray" />
+                    </va-item-section>
+                  </va-item>
+                  <va-item v-if="data.pliego!=null" clickable>
+                    <va-item-section>
+                      <va-item-label>
+                        Pliego
+                      </va-item-label>
+                      <va-item-label caption>
+                        {{data.pliego}}
+                      </va-item-label>
+                    </va-item-section>
+                    <va-item-section side>
+                      <va-icon name="fa fa-eye" color="gray" />
+                    </va-item-section>
+                  </va-item>
+                  <va-item v-if="data.contrato!=null" clickable>
+                    <va-item-section>
+                      <va-item-label>
+                        Contrato
+                      </va-item-label>
+                      <va-item-label caption>
+                        {{data.contrato}}
+                      </va-item-label>
+                    </va-item-section>
+                    <va-item-section side>
+                      <va-icon name="fa fa-eye" color="gray" />
+                    </va-item-section>
+                  </va-item>
+                </va-list>
+              </div>
+            </template>
+          </div>
         </div>
-      </div>
-      <div class="flex xs12 lg12">
-        <va-card>
-          <va-list-label>
-            {{ $t('Detalle de la solicitud de compra') }}
-          </va-list-label>
-          <va-data-table
-            :fields="fields"
-            :data="items"
-            :loading="loading"
-            :totalPages="totalPages"
-            :per-page="parseInt(perPage)"
-            @page-selected="readItems"
-            api-mode
-          >
-            <template slot="actions" slot-scope="props">
-              <va-button flat small color="blue" icon="fa fa-plus"
-                         @click="see(props.rowData.id)">
-                {{ $t('icons.mas_info') }}
-              </va-button>
-            </template>
-            <template slot="prueba" slot-scope="props">
-              <va-button flat small color="orange" icon="fa fa-plus"
-                         @click="select(props.rowData)">
-                {{ $t('icons.mas_info') }}
-              </va-button>
-            </template>
-          </va-data-table>
-        </va-card>
-      </div>
-    </va-card>
-  </div>
+        <div class="flex xs12 lg12">
+          <va-card>
+            <va-list-label>
+              {{ $t('Detalle de la solicitud de compra') }}
+            </va-list-label>
+            <va-data-table
+              :fields="fields"
+              :data="items"
+              :loading="loading"
+              :totalPages="totalPages"
+              :per-page="parseInt(perPage)"
+              @page-selected="readItems"
+              api-mode
+            >
+              <template slot="actions" slot-scope="props">
+                <va-button flat small color="blue" icon="fa fa-plus"
+                           @click="see(props.rowData.id)">
+                  {{ $t('icons.mas_info') }}
+                </va-button>
+              </template>
+              <template slot="prueba" slot-scope="props">
+                <va-button flat small color="orange" icon="fa fa-plus"
+                           @click="select(props.rowData)">
+                  {{ $t('icons.mas_info') }}
+                </va-button>
+              </template>
+            </va-data-table>
+          </va-card>
+        </div>
+      </va-card>
+    </div>
   </div>
 </template>
 <script>
@@ -394,6 +395,9 @@ export default {
           this.items = response.data
         })
         .catch()
+    },
+    docs: function (id) {
+      window.location.href = id
     },
   },
   created () {
