@@ -32,6 +32,22 @@
                   class="mb-0"
                   v-for="sol of solicitud1"
                   :key="'item' + sol.numero_solicitud"
+                  v-if="sol.estado=='N'"
+                >
+                  <template slot="title"></template>
+                  <b>N° Doc: </b>{{ sol.numero_solicitud }}<br>
+                  <b>Fecha: </b>{{ sol.fecha_solicitud }}<br>
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="solicitud(sol.numero_solicitud)">
+                    {{ $t('Ver detalle') }}
+                  </va-button>
+                </va-card>
+                <va-card
+                  slot="after"
+                  stripe="danger"
+                  class="mb-0"
+                  v-for="sol of solicitud1"
+                  :key="'item' + sol.numero_solicitud"
+                  v-else
                 >
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ sol.numero_solicitud }}<br>

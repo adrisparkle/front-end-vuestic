@@ -120,6 +120,11 @@ export default new Router({
           component: () => import('../components/dashboard/Solicitud.vue'),
         },
         {
+          name: 'asiento',
+          path: 'asiento/:id',
+          component: () => import('../components/dashboard/Asiento.vue'),
+        },
+        {
           name: 'statistics',
           path: 'statistics',
           component: EmptyParentComponent,

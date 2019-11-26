@@ -21,6 +21,17 @@
               <template >
                 <table width="100%" class="bla">
                   <tr>
+                    <td class="bla" align="right">
+                      <b>Estado:</b>
+                    </td>
+                    <td class="bla" align="left" v-if="data.estado=='Aprobado'">
+                      <font color="#7fff00">{{data.estado}}</font>
+                    </td>
+                    <td class="bla" align="left" v-else>
+                      <font color="#dc143c">{{data.estado}}</font>
+                    </td>
+                  </tr>
+                  <tr>
                     <td align="right" class="bla">
                       <b># Solicitante: </b>
                     </td>

@@ -89,15 +89,11 @@
             </template>
           </va-list>
         </div>
-      </div>
-      <div class="flex xs12 lg12">
-        <va-card>
-          <div align="center" class="buttons">
-            <va-button color="success" :to="{ name: 'dashboard' }">
-              {{ $t('Ver asiento contable') }}
-            </va-button>
-          </div>
-        </va-card>
+        <div align="center" class="flex xs12 lg12">
+          <va-button color="success" @click="asiento(data.numero_documento)">
+            {{ $t('Ver asiento contable') }}
+          </va-button>
+        </div>
       </div>
     </va-card>
   </div>
@@ -207,6 +203,9 @@ export default {
     },
     volver: function (id) {
       router.push('../relaciones/' + id)
+    },
+    asiento: function (id) {
+      router.push('../asiento/' + id)
     },
   },
   created () {
