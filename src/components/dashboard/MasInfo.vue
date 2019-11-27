@@ -72,6 +72,22 @@
                   class="mb-0"
                   v-for="ofe of oferta1"
                   :key="'item' + ofe.numero_solicitud"
+                  v-if="ofe.estado!='N'"
+                >
+                  <template slot="title"></template>
+                  <b>N° Doc: </b>{{ ofe.numero_oferta }}<br>
+                  <b>Fecha: </b>{{ ofe.fecha_oferta }}<br>
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="oferta(ofe.numero_oferta)">
+                    {{ $t('Ver detalle') }}
+                  </va-button>
+                </va-card>
+                <va-card
+                  slot="after"
+                  stripe="danger"
+                  class="mb-0"
+                  v-for="ofe of oferta1"
+                  :key="'item' + ofe.numero_solicitud"
+                  v-else
                 >
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ ofe.numero_oferta }}<br>
@@ -95,6 +111,21 @@
                   stripe="warning"
                   class="mb-0"
                   v-for="ped of pedido1" :key="'item' + ped.numero_solicitud"
+                  v-if="ped.estado!='N'"
+                >
+                  <template slot="title"></template>
+                  <b>N° Doc: </b>{{ ped.numero_pedido }}<br>
+                  <b>Fecha: </b>{{ ped.fecha_pedido }}<br>
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="pedido(ped.numero_pedido)">
+                    {{ $t('Ver detalle') }}
+                  </va-button>
+                </va-card>
+                <va-card
+                  slot="after"
+                  stripe="danger"
+                  class="mb-0"
+                  v-for="ped of pedido1" :key="'item' + ped.numero_solicitud"
+                  v-else
                 >
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ ped.numero_pedido }}<br>
@@ -118,6 +149,21 @@
                   stripe="warning"
                   class="mb-0"
                   v-for="mer of mercancia1" :key="'item' + mer.numero_solicitud"
+                  v-if="mer.estado!='N'"
+                >
+                  <template slot="title"></template>
+                  <b>N° Doc: </b>{{ mer.numero_mercancia }}<br>
+                  <b>Fecha: </b>{{ mer.fecha_mercancia }}<br>
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="mercancia(mer.numero_mercancia)">
+                    {{ $t('Ver detalle') }}
+                  </va-button>
+                </va-card>
+                <va-card
+                  slot="after"
+                  stripe="danger"
+                  class="mb-0"
+                  v-for="mer of mercancia1" :key="'item' + mer.numero_solicitud"
+                  v-else
                 >
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ mer.numero_mercancia }}<br>
@@ -141,6 +187,21 @@
                   stripe="warning"
                   class="mb-0"
                   v-for="fac of factura1" :key="'item' + fac.numero_solicitud"
+                  v-if="fac.estado!='N'"
+                >
+                  <template slot="title"></template>
+                  <b>N° Doc: </b>{{ fac.numero_factura }}<br>
+                  <b>Fecha: </b>{{ fac.fecha_factura }}<br>
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="factura(fac.numero_factura)">
+                    {{ $t('Ver detalle') }}
+                  </va-button>
+                </va-card>
+                <va-card
+                  slot="after"
+                  stripe="danger"
+                  class="mb-0"
+                  v-for="fac of factura1" :key="'item' + fac.numero_solicitud"
+                  v-else
                 >
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ fac.numero_factura }}<br>
@@ -164,6 +225,21 @@
                   stripe="warning"
                   class="mb-0"
                   v-for="pag of pago1" :key="'item' + pag.numero_solicitud"
+                  v-if="pag.estado!='N'"
+                >
+                  <template slot="title"></template>
+                  <b>N° Doc: </b>{{ pag.numero_pago }}<br>
+                  <b>Fecha: </b>{{ pag.fecha_pago }}<br>
+                  <va-button flat small color="blue" icon="fa fa-plus" @click="pago(pag.numero_pago)">
+                    {{ $t('Ver detalle') }}
+                  </va-button>
+                </va-card>
+                <va-card
+                  slot="after"
+                  stripe="danger"
+                  class="mb-0"
+                  v-for="pag of pago1" :key="'item' + pag.numero_solicitud"
+                  v-else
                 >
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ pag.numero_pago }}<br>
@@ -215,62 +291,78 @@ export default {
     Loading,
   },
   methods: {
-    doAjax () {
-      this.isLoading = true
-      setTimeout(() => {
-        this.isLoading = false
-      }, 3000)
-    },
     request: function () {
+      this.isLoading = true
       this.solicitud1 = this.$route.params
       axios.get('/solicitud/' + this.solicitud1.id)
         .then(response => {
           this.solicitud1 = response.data
         })
         .catch()
+      setTimeout(() => {
+        this.isLoading = false
+      }, 1000)
     },
     quotation: function () {
+      this.isLoading = true
       this.oferta1 = this.$route.params
       axios.get('/oferta/' + this.oferta1.id)
         .then(response => {
           this.oferta1 = response.data
         })
         .catch()
+      setTimeout(() => {
+        this.isLoading = false
+      }, 1000)
     },
     order: function () {
+      this.isLoading = true
       this.pedido1 = this.$route.params
       axios.get('/pedido/' + this.pedido1.id)
         .then(response => {
           this.pedido1 = response.data
         })
         .catch()
+      setTimeout(() => {
+        this.isLoading = false
+      }, 1000)
     },
-
     merchandise: function () {
+      this.isLoading = true
       this.mercancia1 = this.$route.params
       axios.get('/mercancia/' + this.mercancia1.id)
         .then(response => {
           this.mercancia1 = response.data
         })
         .catch()
+      setTimeout(() => {
+        this.isLoading = false
+      }, 2000)
     },
 
     check: function () {
+      this.isLoading = true
       this.factura1 = this.$route.params
       axios.get('/factura/' + this.factura1.id)
         .then(response => {
           this.factura1 = response.data
         })
         .catch()
+      setTimeout(() => {
+        this.isLoading = false
+      }, 2000)
     },
-
     payment: function () {
+      this.isLoading = true
       this.pago1 = this.$route.params
       axios.get('/pago/' + this.pago1.id)
         .then(response => {
           this.pago1 = response.data
         })
         .catch()
+      setTimeout(() => {
+        this.isLoading = false
+      }, 2000)
     },
     solicitud: function (id) {
       router.push('../solicitud/' + id)
@@ -292,7 +384,6 @@ export default {
     },
   },
   created () {
-    this.doAjax()
     this.request()
     this.quotation()
     this.order()

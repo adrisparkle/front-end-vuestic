@@ -21,6 +21,17 @@
             <template>
               <table width="100%" class="bla">
                 <tr>
+                  <td class="bla" align="right">
+                    <b>Estado:</b>
+                  </td>
+                  <td class="bla" align="left" v-if="data.estado=='Aprobado'">
+                    <font color="#7fff00">{{data.estado}}</font>
+                  </td>
+                  <td class="bla" align="left" v-else>
+                    <font color="#dc143c">{{data.estado}}</font>
+                  </td>
+                </tr>
+                <tr>
                   <td align="right" class="bla">
                     <b># Proveedor: </b>
                   </td>
@@ -107,39 +118,39 @@
                 <va-list-label>
                   {{ $t('Documentos Anexos') }}
                 </va-list-label>
-                <va-item v-if="data.espicificaciones_tecnicas!=null" clickable>
+                <va-item v-if="data.espicificaciones_tecnicas!=null">
                   <va-item-section>
                     <va-item-label>
                       Especificaciones técnicas
                     </va-item-label>
                     <va-item-label caption>
-                      {{data.espicificaciones_tecnicas}}
+                      <a v-bind:href="'file:///' + data.espicificaciones_tecnicas">{{ data.espicificaciones_tecnicas }}</a>
                     </va-item-label>
                   </va-item-section>
                   <va-item-section side>
                     <va-icon name="fa fa-eye" color="gray" />
                   </va-item-section>
                 </va-item>
-                <va-item v-if="data.informe_proyecto!=null" clickable>
+                <va-item v-if="data.informe_proyecto!=null" clickable @click="docs(data.informe_proyecto)">
                   <va-item-section>
                     <va-item-label>
                       Informe del Proyecto
                     </va-item-label>
                     <va-item-label caption>
-                      {{data.informe_proyecto}}
+                      <a v-bind:href="'file:///' + data.informe_proyecto">{{ data.informe_proyecto }}</a>
                     </va-item-label>
                   </va-item-section>
                   <va-item-section side>
                     <va-icon name="fa fa-eye" color="gray" />
                   </va-item-section>
                 </va-item>
-                <va-item v-if="data.informe_circunstanciado!=null" clickable>
+                <va-item v-if="data.informe_circunstanciado!=null" clickable @click="docs(data.informe_circunstanciado)">
                   <va-item-section>
                     <va-item-label>
                       Informe circunstanciado
                     </va-item-label>
                     <va-item-label caption>
-                      {{data.informe_circunstanciado}}
+                      <a v-bind:href="'file:///' + data.informe_circunstanciado">{{ data.informe_circunstanciado }}</a>
                     </va-item-label>
                   </va-item-section>
                   <va-item-section side>
@@ -152,7 +163,7 @@
                       Pago directo
                     </va-item-label>
                     <va-item-label caption>
-                      {{data.pago_directo}}
+                      <a v-bind:href="'file:///' + data.pago_directo">{{ data.pago_directo }}</a>
                     </va-item-label>
                   </va-item-section>
                   <va-item-section side>
@@ -165,7 +176,7 @@
                       Propuesta
                     </va-item-label>
                     <va-item-label caption>
-                      {{data.propuesta}}
+                      <a v-bind:href="'file:///' + data.propuesta">{{ data.propuesta }}</a>
                     </va-item-label>
                   </va-item-section>
                   <va-item-section side>
@@ -178,7 +189,7 @@
                       Cuadro comparativo
                     </va-item-label>
                     <va-item-label caption>
-                      {{data.cuadro_comparativo}}
+                      <a v-bind:href="'file:///' + data.cuadro_comparativo">{{ data.cuadro_comparativo }}</a>
                     </va-item-label>
                   </va-item-section>
                   <va-item-section side>
@@ -191,7 +202,7 @@
                       Acta de Evaluación
                     </va-item-label>
                     <va-item-label caption>
-                      {{data.acta_evaluacion}}
+                      <a v-bind:href="'file:///' + data.acta_evaluacion">{{ data.acta_evaluacion }}</a>
                     </va-item-label>
                   </va-item-section>
                   <va-item-section side>
@@ -204,7 +215,7 @@
                       Informe del proceso
                     </va-item-label>
                     <va-item-label caption>
-                      {{informe_proceso}}
+                      <a v-bind:href="'file:///' + data.informe_proceso">{{ data.informe_proceso }}</a>
                     </va-item-label>
                   </va-item-section>
                   <va-item-section side>
@@ -217,7 +228,7 @@
                       Informe legal
                     </va-item-label>
                     <va-item-label caption>
-                      {{informe_legal}}
+                      <a v-bind:href="'file:///' + data.informe_legal">{{ data.informe_legal }}</a>
                     </va-item-label>
                   </va-item-section>
                   <va-item-section side>
@@ -230,7 +241,7 @@
                       Pliego
                     </va-item-label>
                     <va-item-label caption>
-                      {{data.pliego}}
+                      <a v-bind:href="'file:///' + data.pliego">{{ data.pliego }}</a>
                     </va-item-label>
                   </va-item-section>
                   <va-item-section side>
@@ -243,7 +254,7 @@
                       Contrato
                     </va-item-label>
                     <va-item-label caption>
-                      {{data.contrato}}
+                      <a v-bind:href="'file:///' + data.contrato">{{ data.contrato }}</a>
                     </va-item-label>
                   </va-item-section>
                   <va-item-section side>
@@ -369,34 +380,35 @@ export default {
     }
   },
   methods: {
-    doAjax () {
-      this.isLoading = true
-      setTimeout(() => {
-        this.isLoading = false
-      }, 3000)
-    },
     init: function () {
+      this.isLoading = true
       this.formData = this.$route.params
       axios.get('/PurchaseDN/' + this.formData.id)
         .then(response => {
           this.formData = response.data
         })
         .catch()
+      setTimeout(() => {
+        this.isLoading = false
+      }, 2000)
     },
     readItems: function () {
+      this.isLoading = true
       this.items = this.$route.params
       axios.get('/PurchaseDNDetail/' + this.items.id)
         .then(response => {
           this.items = response.data
         })
         .catch()
+      setTimeout(() => {
+        this.isLoading = false
+      }, 2000)
     },
     volver: function (id) {
       router.push('../relaciones/' + id)
     },
   },
   created () {
-    this.doAjax()
     this.init()
     this.readItems()
   },

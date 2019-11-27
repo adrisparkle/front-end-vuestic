@@ -22,6 +22,17 @@
             <template >
               <table  width="100%" class="bla">
                 <tr>
+                  <td class="bla" align="right">
+                    <b>Estado:</b>
+                  </td>
+                  <td class="bla" align="left" v-if="data.estado=='Aprobado'">
+                    <font color="#7fff00">{{data.estado}}</font>
+                  </td>
+                  <td class="bla" align="left" v-else>
+                    <font color="#dc143c">{{data.estado}}</font>
+                  </td>
+                </tr>
+                <tr>
                   <td align="right" class="bla">
                     <b># Proveedor: </b>
                   </td>
@@ -179,27 +190,29 @@ export default {
     }
   },
   methods: {
-    doAjax () {
-      this.isLoading = true
-      setTimeout(() => {
-        this.isLoading = false
-      }, 3000)
-    },
     init: function () {
+      this.isLoading = true
       this.formData = this.$route.params
       axios.get('/PurchasePayment/' + this.formData.id)
         .then(response => {
           this.formData = response.data
         })
         .catch()
+      setTimeout(() => {
+        this.isLoading = false
+      }, 2000)
     },
     readItems: function () {
+      this.isLoading = true
       this.items = this.$route.params
       axios.get('/PurchasePaymentDetail/' + this.items.id)
         .then(response => {
           this.items = response.data
         })
         .catch()
+      setTimeout(() => {
+        this.isLoading = false
+      }, 2000)
     },
     volver: function (id) {
       router.push('../relaciones/' + id)
@@ -209,7 +222,6 @@ export default {
     },
   },
   created () {
-    this.doAjax()
     this.init()
     this.readItems()
   },
