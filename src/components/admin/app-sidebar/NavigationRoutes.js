@@ -13,11 +13,12 @@ export const navigationRoutes = {
     },
 
     {
-      name: 'statistics',
-      displayName: 'menu.statistics',
+      name: 'reportes',
+      displayName: 'Reportes',
       meta: {
         iconClass: 'vuestic-iconset-statistics',
       },
+      /*
       disabled: true,
       children: [
         {
@@ -28,7 +29,7 @@ export const navigationRoutes = {
           name: 'progress-bars',
           displayName: 'menu.progressBars',
         },
-      ],
+      ], */
     },
     {
       name: 'forms',

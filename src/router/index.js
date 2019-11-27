@@ -125,10 +125,10 @@ export default new Router({
           component: () => import('../components/dashboard/Asiento.vue'),
         },
         {
-          name: 'statistics',
-          path: 'statistics',
-          component: EmptyParentComponent,
-          children: [
+          name: 'reportes',
+          path: 'reportes',
+          component: () => import('../components/dashboard/ReporteSelect.vue'),
+          /*  children: [
             {
               name: 'charts',
               path: 'charts',
@@ -145,7 +145,7 @@ export default new Router({
                 wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Progress-Bars',
               },
             },
-          ],
+          ],  */
         },
         {
           name: 'forms',
