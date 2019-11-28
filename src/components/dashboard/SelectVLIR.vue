@@ -5,7 +5,7 @@
   <va-card>
     <div class="mb-4" align="center">
       <p class="display-2">Generación de reportes</p><br>
-      <p class="display-4">Presupuesto de proyectos</p>
+      <p class="display-4">Gastos del Proyecto VLIR</p>
       <p>Seleccionar el proyecto a continuación:</p>
     </div>
     <form>
@@ -43,9 +43,9 @@
       </div>
     </form>
     <div align="center" hidden>
-      {{date1 = simpleSelectModel.valido_desde}} <br>
-      {{date2 = simpleSelectModel.valido_hasta}} <br>
-      {{simple = simpleSelectModel.regional}} <br>
+      jkah{{date1 = simpleSelectModel.valido_desde}} <br>
+      shdkj{{date2 = simpleSelectModel.valido_hasta}} <br>
+      kashj{{simple = simpleSelectModel.regional}} <br>
     </div>
   </va-card>
   </div>
@@ -76,14 +76,14 @@ export default {
   methods: {
     init: function () {
       this.isLoading = true
-      axios.get('/ProjectGeneral/')
+      axios.get('/ProjectVLIR/')
         .then(response => {
           this.simpleOptions = response.data
           this.isLoading = false
         }).catch()
     },
     reporte: function (id) {
-      router.push('mostrarreporte/' + id)
+      router.push('mostrarvlir/' + id)
     },
   },
 }

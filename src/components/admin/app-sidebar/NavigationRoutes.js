@@ -18,18 +18,13 @@ export const navigationRoutes = {
       meta: {
         iconClass: 'vuestic-iconset-statistics',
       },
-      /*
-      disabled: true,
-      children: [
-        {
-          name: 'charts',
-          displayName: 'menu.charts',
-        },
-        {
-          name: 'progress-bars',
-          displayName: 'menu.progressBars',
-        },
-      ], */
+    },
+    {
+      name: 'reportevlir',
+      displayName: 'Reporte VLIR',
+      meta: {
+        iconClass: 'vuestic-iconset-forms',
+      },
     },
     {
       name: 'forms',

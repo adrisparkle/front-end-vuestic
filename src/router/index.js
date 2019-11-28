@@ -128,24 +128,21 @@ export default new Router({
           name: 'reportes',
           path: 'reportes',
           component: () => import('../components/dashboard/ReporteSelect.vue'),
-          /*  children: [
-            {
-              name: 'charts',
-              path: 'charts',
-              component: () => import('../components/statistics/charts/Charts.vue'),
-              meta: {
-                wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Charts',
-              },
-            },
-            {
-              name: 'progress-bars',
-              path: 'progress-bars',
-              component: () => import('../components/statistics/progress-bars/ProgressBars.vue'),
-              meta: {
-                wikiLink: 'https://github.com/epicmaxco/vuestic-admin/wiki/Progress-Bars',
-              },
-            },
-          ],  */
+        },
+        {
+          name: 'mostrarreporte',
+          path: 'mostrarreporte/:id',
+          component: () => import('../components/dashboard/ReporteShow.vue'),
+        },
+        {
+          name: 'reportevlir',
+          path: 'reportevlir',
+          component: () => import('../components/dashboard/SelectVLIR.vue'),
+        },
+        {
+          name: 'mostrarvlir',
+          path: 'mostrarvlir/:id',
+          component: () => import('../components/dashboard/ShowVLIR.vue'),
         },
         {
           name: 'forms',
