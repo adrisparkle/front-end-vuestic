@@ -33,12 +33,15 @@ Vue.use(ColorThemePlugin,
   })
 
 router.beforeEach((to, from, next) => {
-  store.commit('setLoading', true)
-  next()
-})
-
-router.afterEach((to, from) => {
-  store.commit('setLoading', false)
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.getters.isLoggedIn) {
+      next()
+      return
+    }
+    next('/login')
+  } else {
+    next()
+  }
 })
 // Dev server
 // axios.defaults.baseURL = 'http://172.16.0.187:8001/api'
@@ -48,6 +51,7 @@ axios.defaults.baseURL = 'http://localhost:8008/api'
 /* axios.defaults.baseURL = 'http://localhost:60749/api' */
 axios.defaults.headers.common['id'] = localStorage.getItem('userId')
 axios.defaults.headers.common['token'] = localStorage.getItem('token')
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

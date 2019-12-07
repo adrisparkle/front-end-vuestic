@@ -8,6 +8,9 @@
           <va-button color="info" :to="{ name: 'reportevlir' }">
             {{ $t('Volver al Inicio') }}
           </va-button>
+          <va-button color="success" :to="{ name: 'reportevlir' }">
+            {{ $t('Descargar') }}
+          </va-button>
         </div>
         <div class="flex xs12 lg12">
           <va-card>
@@ -46,23 +49,23 @@ export default {
       }, {
         name: 'fecha',
         title: this.$t('fecha'),
-        width: '30%',
+        width: '10%',
       }, {
         name: 'numero_comprobante',
-        title: this.$t('numero_comprobante'),
-        width: '20%',
+        title: this.$t('numero de comprobante'),
+        width: '15%',
       }, {
         name: 'numero_transaccion',
-        title: this.$t('numero_transaccion'),
-        width: '20%',
+        title: this.$t('numero de transaccion'),
+        width: '10%',
       }, {
         name: 'sucursal',
         title: this.$t('sucursal'),
-        width: '20%',
+        width: '10%',
       }, {
         name: 'descripcion',
         title: this.$t('descripcion'),
-        width: '20%',
+        width: '35%',
       }, {
         name: 'referencia',
         title: this.$t('referencia'),
@@ -73,7 +76,7 @@ export default {
         width: '20%',
       }, {
         name: 'codigo_proyecto',
-        title: this.$t('codigo_proyecto'),
+        title: this.$t('codigo de proyecto'),
         width: '20%',
       }]
     },

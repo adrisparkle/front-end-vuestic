@@ -11,7 +11,6 @@ export const navigationRoutes = {
         iconClass: 'vuestic-iconset-dashboard',
       },
     },
-
     {
       name: 'reportes',
       displayName: 'Reportes',
@@ -213,5 +212,6 @@ export const navigationRoutes = {
         },
       ],
     },
+
   ],
 }

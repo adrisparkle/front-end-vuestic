@@ -8,6 +8,9 @@
           <va-button color="info" :to="{ name: 'reportes' }">
             {{ $t('Volver al Inicio') }}
           </va-button>
+          <va-button color="success" :to="{ name: 'reportes' }">
+            {{ $t('Descargar') }}
+          </va-button>
         </div>
         <div class="flex xs12 lg12">
           <va-card>
@@ -41,47 +44,39 @@ export default {
     fields () {
       return [{
         name: 'PROYECTO_CODIGO',
-        title: this.$t('proyecto_codigo'),
-        width: '15%',
+        title: this.$t('Código del proyecto'),
+        width: '10%',
       }, {
         name: 'proyecto_nombre',
-        title: this.$t('proyecto_nombre'),
+        title: this.$t('Nombre del proyecto'),
         width: '30%',
-      }, {
-        name: 'sucursal',
-        title: this.$t('sucursal'),
-        width: '20%',
       }, {
         name: 'cuenta',
         title: this.$t('cuenta'),
         width: '20%',
       }, {
         name: 'codigo_cuenta',
-        title: this.$t('codigo_cuenta'),
+        title: this.$t('código de cuenta'),
         width: '20%',
       }, {
         name: 'nombre_cuenta',
-        title: this.$t('nombre_cuenta'),
+        title: this.$t('nombre de la cuenta'),
         width: '20%',
       }, {
         name: 'unidad_organizacional',
-        title: this.$t('unidad_organizacional'),
+        title: this.$t('unidad organizacional'),
         width: '20%',
       }, {
         name: 'pei_po',
-        title: this.$t('pei_po'),
+        title: this.$t('pei/po'),
         width: '20%',
       }, {
         name: 'total_cuenta',
-        title: this.$t('total_cuenta'),
-        width: '20%',
-      }, {
-        name: 'total_dim',
-        title: this.$t('total_dim'),
+        title: this.$t('total de la cuenta'),
         width: '20%',
       }, {
         name: 'ejecutado',
-        title: this.$t('ejecutado'),
+        title: this.$t('presupuesto ejecutado'),
         width: '20%',
       }]
     },

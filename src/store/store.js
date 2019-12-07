@@ -1,24 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import VuexI18n from 'vuex-i18n' // load vuex i18n module
-import app from './modules/app'
-
-import * as getters from './getters'
 import axios from 'axios'
 
 Vue.use(Vuex)
-
-const store = new Vuex.Store({
-  strict: true, // process.env.NODE_ENV !== 'production',
-  getters,
-  modules: {
-    app,
-  },
-  state: {},
-  mutations: {},
-})
-
-Vue.use(VuexI18n.plugin, store)
 
 export default new Vuex.Store({
   state: {
@@ -47,16 +31,7 @@ export default new Vuex.Store({
     login ({ commit }, user) {
       return new Promise((resolve, reject) => {
         commit('auth_request')
-        /* axios({ url: '/auth/GetToken', data: user, method: 'POST' }) */
-        axios({
-          method: 'post',
-          url: '/auth/GetToken',
-          headers: {},
-          data: {
-            username: user.email, // This is the body part
-            password: user.password,
-          },
-        })
+        axios({ url: 'http://localhost:3000/login', data: user, method: 'POST' })
           .then(resp => {
             const token = resp.data.token
             const user = resp.data.user

@@ -162,18 +162,6 @@ export default {
         title: this.$t('Referencia 3'),
         width: '20%',
       }, {
-        name: 'fecha_contabilizacion',
-        title: this.$t('Fecha Contabilizacion'),
-        width: '20%',
-      }, {
-        name: 'fecha_documento',
-        title: this.$t('Fecha Documento'),
-        width: '20%',
-      }, {
-        name: 'fecha_valida',
-        title: this.$t('Fecha Valida'),
-        width: '20%',
-      }, {
         name: 'proyecto',
         title: this.$t('Proyecto'),
         width: '20%',

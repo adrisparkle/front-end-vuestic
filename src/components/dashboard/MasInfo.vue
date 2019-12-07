@@ -72,7 +72,7 @@
                   class="mb-0"
                   v-for="ofe of oferta1"
                   :key="'item' + ofe.numero_solicitud"
-                  v-if="ofe.estado!='N'"
+                  v-if="ofe.estado=='N'"
                 >
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ ofe.numero_oferta }}<br>
@@ -111,7 +111,7 @@
                   stripe="warning"
                   class="mb-0"
                   v-for="ped of pedido1" :key="'item' + ped.numero_solicitud"
-                  v-if="ped.estado!='N'"
+                  v-if="ped.estado=='N'"
                 >
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ ped.numero_pedido }}<br>
@@ -149,7 +149,7 @@
                   stripe="warning"
                   class="mb-0"
                   v-for="mer of mercancia1" :key="'item' + mer.numero_solicitud"
-                  v-if="mer.estado!='N'"
+                  v-if="mer.estado=='N'"
                 >
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ mer.numero_mercancia }}<br>
@@ -187,7 +187,7 @@
                   stripe="warning"
                   class="mb-0"
                   v-for="fac of factura1" :key="'item' + fac.numero_solicitud"
-                  v-if="fac.estado!='N'"
+                  v-if="fac.estado=='N'"
                 >
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ fac.numero_factura }}<br>
@@ -225,7 +225,7 @@
                   stripe="warning"
                   class="mb-0"
                   v-for="pag of pago1" :key="'item' + pag.numero_solicitud"
-                  v-if="pag.estado!='N'"
+                  v-if="pag.estado=='N'"
                 >
                   <template slot="title"></template>
                   <b>N° Doc: </b>{{ pag.numero_pago }}<br>

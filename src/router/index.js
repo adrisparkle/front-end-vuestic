@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import AuthLayout from '../components/auth/AuthLayout'
 import AppLayout from '../components/admin/AppLayout'
-
+import store from '../store/store.js'
 Vue.use(Router)
 
 const EmptyParentComponent = {
@@ -31,20 +31,6 @@ export default new Router({
           name: 'login',
           path: 'login',
           component: () => import('../components/auth/login/Login.vue'),
-        },
-        {
-          name: 'signup',
-          path: 'signup',
-          component: () => import('../components/auth/signup/Signup.vue'),
-        },
-        {
-          name: 'recover-password',
-          path: 'recover-password',
-          component: () => import('../components/auth/recover-password/RecoverPassword.vue'),
-        },
-        {
-          path: '',
-          redirect: { name: 'login' },
         },
       ],
     },
@@ -83,66 +69,131 @@ export default new Router({
           name: 'dashboard',
           path: 'dashboard',
           component: () => import('../components/dashboard/Dashboard.vue'),
+          /*
+          meta: {
+            requiresAuth: true,
+          },
+          */
         },
         {
           name: 'relaciones',
           path: 'relaciones/:id',
           component: () => import('../components/dashboard/MasInfo.vue'),
+          /*
+          meta: {
+            requiresAuth: true,
+          },
+          */
         },
         {
           name: 'oferta',
           path: 'oferta/:id',
           component: () => import('../components/dashboard/Oferta.vue'),
+          /*
+          meta: {
+            requiresAuth: true,
+          },
+          */
         },
         {
           name: 'pedido',
           path: 'pedido/:id',
           component: () => import('../components/dashboard/Pedido.vue'),
+          /*
+          meta: {
+            requiresAuth: true,
+          },
+          */
         },
         {
           name: 'mercancia',
           path: 'mercancia/:id',
           component: () => import('../components/dashboard/Mercancia.vue'),
+          /*
+          meta: {
+            requiresAuth: true,
+          },
+          */
         },
         {
           name: 'factura',
           path: 'factura/:id',
           component: () => import('../components/dashboard/Factura.vue'),
+          /*
+          meta: {
+            requiresAuth: true,
+          },
+          */
         },
         {
           name: 'pago',
           path: 'pago/:id',
           component: () => import('../components/dashboard/Pago.vue'),
+          /*
+          meta: {
+            requiresAuth: true,
+          },
+          */
         },
         {
           name: 'solicitud',
           path: 'solicitud/:id',
           component: () => import('../components/dashboard/Solicitud.vue'),
+          /*
+          meta: {
+            requiresAuth: true,
+          },
+          */
         },
         {
           name: 'asiento',
           path: 'asiento/:id',
           component: () => import('../components/dashboard/Asiento.vue'),
+          /*
+          meta: {
+            requiresAuth: true,
+          },
+          */
         },
         {
           name: 'reportes',
           path: 'reportes',
           component: () => import('../components/dashboard/ReporteSelect.vue'),
+          /*
+          meta: {
+            requiresAuth: true,
+          },
+          */
         },
         {
           name: 'mostrarreporte',
           path: 'mostrarreporte/:id',
           component: () => import('../components/dashboard/ReporteShow.vue'),
+          /*
+          meta: {
+            requiresAuth: true,
+          },
+          */
         },
         {
           name: 'reportevlir',
           path: 'reportevlir',
           component: () => import('../components/dashboard/SelectVLIR.vue'),
+          /*
+          meta: {
+            requiresAuth: true,
+          },
+          */
         },
         {
           name: 'mostrarvlir',
           path: 'mostrarvlir/:id',
           component: () => import('../components/dashboard/ShowVLIR.vue'),
+          /*
+          meta: {
+            requiresAuth: true,
+          },
+          */
         },
         {
           name: 'forms',
@@ -429,3 +480,4 @@ export default new Router({
     },
   ],
 })
+
