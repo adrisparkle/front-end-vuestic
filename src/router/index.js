@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import AuthLayout from '../components/auth/AuthLayout'
 import AppLayout from '../components/admin/AppLayout'
-import store from '../store/store.js'
+import store from '../store/index'
 Vue.use(Router)
 
 const EmptyParentComponent = {
@@ -24,16 +23,11 @@ export default new Router({
       redirect: { name: 'dashboard' },
     },
     {
-      path: '/auth',
-      component: AuthLayout,
-      children: [
-        {
-          name: 'login',
-          path: 'login',
-          component: () => import('../components/auth/login/Login.vue'),
-        },
-      ],
+      name: 'login',
+      path: 'login',
+      component: () => import('../components/auth/AuthLayout.vue'),
     },
+    /*
     {
       path: '/404',
       component: EmptyParentComponent,
@@ -60,6 +54,7 @@ export default new Router({
         },
       ],
     },
+    */
     {
       name: 'Admin',
       path: '/admin',
@@ -80,10 +75,9 @@ export default new Router({
           path: 'relaciones/:id',
           component: () => import('../components/dashboard/MasInfo.vue'),
           /*
-          meta: {
+         meta: {
             requiresAuth: true,
-          },
-          */
+          }, */
         },
         {
           name: 'oferta',
@@ -480,4 +474,16 @@ export default new Router({
     },
   ],
 })
-
+/*
+Router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (store.getters.isLoggedIn) {
+      next()
+      return
+    }
+    next('/login')
+  } else {
+    next()
+  }
+})
+*/

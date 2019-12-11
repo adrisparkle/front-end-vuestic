@@ -20,7 +20,22 @@
         <va-separator/>
 
         <div class="pa-3">
-          <router-view/>
+          <form @submit.prevent="login">
+            <va-input
+              v-model="email"
+              type="email"
+              :label="$t('auth.email')"
+            />
+
+            <va-input
+              v-model="password"
+              type="password"
+              :label="$t('auth.password')"
+            />
+            <div class="d-flex justify--center mt-3">
+              <va-button type="submit" class="my-0">{{ $t('auth.login') }}</va-button>
+            </div>
+          </form>
         </div>
       </va-card>
     </div>
@@ -30,12 +45,9 @@
 
 <script>
 import VaIconVuestic from 'vuestic-ui/src/components/vuestic-components/va-icon/va-iconset/VaIconVuestic'
-
 const tabs = [
   'login',
-  'signup',
 ]
-
 export default {
   name: 'AuthLayout',
   components: { VaIconVuestic },
@@ -43,6 +55,8 @@ export default {
     return {
       selectedTabIndex: 0,
       tabTitles: ['login', 'createNewAccount'],
+      email: '',
+      password: '',
     }
   },
   computed: {
@@ -53,6 +67,15 @@ export default {
       get () {
         return tabs.indexOf(this.$route.name)
       },
+    },
+  },
+  methods: {
+    login: function () {
+      let email = this.email
+      let password = this.password
+      this.$store.dispatch('login', { email, password })
+        .then(() => this.$router.push('/'))
+        .catch(err => console.log(err))
     },
   },
 }

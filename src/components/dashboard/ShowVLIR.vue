@@ -8,9 +8,16 @@
           <va-button color="info" :to="{ name: 'reportevlir' }">
             {{ $t('Volver al Inicio') }}
           </va-button>
-          <va-button color="success" :to="{ name: 'reportevlir' }">
-            {{ $t('Descargar') }}
-          </va-button>
+          <vue-excel-xlsx
+            :data="items"
+            :columns="columns"
+            :filename="'VLIRProyecto'"
+            :sheetname="'hoja1'"
+            :fields="fields"
+            class="boton_personalizado"
+          >
+            {{ $t('Descargar Excel') }}
+          </vue-excel-xlsx>
         </div>
         <div class="flex xs12 lg12">
           <va-card>
@@ -92,6 +99,44 @@ export default {
       formData: {
         id: null,
       },
+      columns: [
+        {
+          label: 'Numero cuenta contable',
+          field: 'cuenta',
+        },
+        {
+          label: 'Fecha registro contable',
+          field: 'fecha',
+        },
+        {
+          label: 'No de comprobante contable',
+          field: 'numero_comprobante',
+        },
+        {
+          label: 'No de transaccion',
+          field: 'numero_transaccion',
+        },
+        {
+          label: 'Regional',
+          field: 'sucursal',
+        },
+        {
+          label: 'Descripcion',
+          field: 'descripcion',
+        },
+        {
+          label: 'Referencia',
+          field: 'referencia',
+        },
+        {
+          label: 'Monto Bs',
+          field: 'monto',
+        },
+        {
+          label: 'Codigo de proyecto',
+          field: 'codigo_proyecto',
+        },
+      ],
     }
   },
   methods: {

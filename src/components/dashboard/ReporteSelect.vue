@@ -34,14 +34,19 @@
           keyBy="codigo_proyecto"
           :options="simpleOptions"
           placeholder="Seleccione aqui"
+          formData = 1000
           :value="codigo_proyecto">
         </va-select>
       </div>
       <div align="center">
         <!-- @click="readItems(selected)" -->
-        <va-button color="success" @click="reporte(simpleSelectModel.codigo_proyecto)"> {{ $t('Seleccionar') }}</va-button>
+        <va-button color="success" @click="check(simpleSelectModel.codigo_proyecto)"> {{ $t('Seleccionar') }}</va-button>
       </div>
     </form>
+    <!-- @click="check(simpleSelectModel.codigo_proyecto)&&launchToast(formData.length,simpleSelectModel.codigo_proyecto)" -->
+    aquisitos: {{formData.length}} y estito mas {{simpleSelectModel.codigo_proyecto}}
+    <div v-if="formData.length > 0">{{reporte(simpleSelectModel.codigo_proyecto)}}</div>
+    <div v-if="(formData.length) === 0">{{launchToast()}}</div>
     <div align="center" hidden>
       {{date1 = simpleSelectModel.valido_desde}} <br>
       {{date2 = simpleSelectModel.valido_hasta}} <br>
@@ -68,6 +73,12 @@ export default {
       dateSearch: null,
       perPage: '5',
       perPageOptions: ['5', '10', '15', '20'],
+      toastText: '¡No se encuentran movimientos para este proyecto!',
+      toastDuration: 3000,
+      toastPosition: 'top-center',
+      isToastFullWidth: true,
+      formData: 1000,
+      color: 'danger',
     }
   },
   created () {
@@ -81,6 +92,25 @@ export default {
           this.simpleOptions = response.data
           this.isLoading = false
         }).catch()
+    },
+    check: function (id) {
+      axios.get('/ProjectInfo/' + id)
+        .then(response => {
+          this.formData = response.data
+        }).catch()
+    },
+    launchToast () {
+      this.showToast(
+        this.toastText,
+        {
+          position: this.toastPosition,
+          duration: this.toastDuration,
+          fullWidth: this.isToastFullWidth,
+        },
+      )
+      setTimeout(() => {
+        this.$router.go()
+      }, 3000)
     },
     reporte: function (id) {
       router.push('mostrarreporte/' + id)

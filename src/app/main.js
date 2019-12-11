@@ -15,6 +15,7 @@ import VueClipboard from 'vue-clipboard2'
 import VeeValidate from 'vee-validate'
 import axios from 'axios'
 import '../metrics'
+import VueExcelXlsx from 'vue-excel-xlsx'
 
 // NOTE: workaround for VeeValidate + vuetable-2
 Vue.use(VeeValidate, { fieldsBagName: 'formFields' })
@@ -22,7 +23,7 @@ Vue.use(VeeValidate, { fieldsBagName: 'formFields' })
 Vue.use(VuesticPlugin)
 Vue.use(YmapPlugin)
 Vue.use(VueClipboard)
-
+Vue.use(VueExcelXlsx)
 Vue.use(ColorThemePlugin,
   {
     // Add or change theme colors here
@@ -45,14 +46,17 @@ router.beforeEach((to, from, next) => {
 })
 // Dev server
 // axios.defaults.baseURL = 'http://172.16.0.187:8001/api'
-
 // Production server
 axios.defaults.baseURL = 'http://localhost:8008/api'
 /* axios.defaults.baseURL = 'http://localhost:60749/api' */
-axios.defaults.headers.common['id'] = localStorage.getItem('userId')
-axios.defaults.headers.common['token'] = localStorage.getItem('token')
-
+/* axios.defaults.headers.common['id'] = localStorage.getItem('userId') */
+/* axios.defaults.headers.common['token'] = localStorage.getItem('token') */
 /* eslint-disable no-new */
+Vue.prototype.$http = axios
+const token = localStorage.getItem('token')
+if (token) {
+  Vue.prototype.$http.defaults.headers.common['Authorization'] = token
+}
 new Vue({
   el: '#app',
   router,

@@ -8,9 +8,14 @@
           <va-button color="info" :to="{ name: 'reportes' }">
             {{ $t('Volver al Inicio') }}
           </va-button>
-          <va-button color="success" :to="{ name: 'reportes' }">
-            {{ $t('Descargar') }}
-          </va-button>
+              <vue-excel-xlsx
+              :data="items"
+              :columns="columns"
+              :filename="'PresupProyecto'"
+              :sheetname="'hoja1'"
+              :fields="fields"
+              class="boton_personalizado"
+            >{{ $t('Descargar Excel') }}</vue-excel-xlsx>
         </div>
         <div class="flex xs12 lg12">
           <va-card>
@@ -92,6 +97,48 @@ export default {
       formData: {
         id: null,
       },
+      toastText: '¡No se encuentran movimientos para este proyecto!',
+      toastDuration: 2500,
+      toastPosition: 'top-center',
+      isToastFullWidth: true,
+      columns: [
+        {
+          label: 'Codigo del proyecto',
+          field: 'PROYECTO_CODIGO',
+        },
+        {
+          label: 'Nombre del proyecto',
+          field: 'proyecto_nombre',
+        },
+        {
+          label: 'Cuenta',
+          field: 'cuenta',
+        },
+        {
+          label: 'Código de cuenta',
+          field: 'codigo_cuenta',
+        },
+        {
+          label: 'Nombre de la cuenta',
+          field: 'nombre_cuenta',
+        },
+        {
+          label: 'Unidad Organizacional',
+          field: 'unidad_organizacional',
+        },
+        {
+          label: 'PEI/PO',
+          field: 'pei_po',
+        },
+        {
+          label: 'Total de la cuenta',
+          field: 'total_cuenta',
+        },
+        {
+          label: 'Presupuesto ejecutado',
+          field: 'ejecutado',
+        },
+      ],
     }
   },
   methods: {
@@ -116,5 +163,19 @@ export default {
 <style lang="scss">
   .bla{
     padding: 10px !important;
+    color: #000000;
+    background: darkblue;
+  }
+  .boton_personalizado{
+    font-size: 18px;
+    color: #ffffff;
+    background-color: #40e583;
+    border: 2px solid #40e583;
+    border-radius: 20px;
+    padding: 7.5px 25px;
+  }
+  .boton_personalizado:hover{
+    color: #ffffff;
+    background-color: rgba(64, 229, 131, 0.55);
   }
 </style>

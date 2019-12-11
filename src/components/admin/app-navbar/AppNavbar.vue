@@ -1,15 +1,9 @@
 <template>
   <va-navbar class="app-navbar">
-    <div align="left">
-      Universidad
-    </div>
     <div class="app-navbar__actions row flex-nowrap align--center">
-      <!--<settings-dropdown-->
-        <!--class="va-navbar__item"-->
-        <!--:navbar-view.sync="navbarViewProxy"-->
-      <!--/>-->
       <profile-dropdown class="va-navbar__item">
         <span>{{userName}}</span>
+        <span v-if="isLoggedIn"> | <a @click="logout">Logout</a></span>
       </profile-dropdown>
     </div>
   </va-navbar>
@@ -47,6 +41,17 @@ export default {
       set (minimized) {
         this.$emit('update:minimized', minimized)
       },
+    },
+    isLoggedIn: function () {
+      return this.$store.getters.isLoggedIn
+    },
+  },
+  methods: {
+    logout: function () {
+      this.$store.dispatch('logout')
+        .then(() => {
+          this.$router.push('/login')
+        })
     },
   },
 }

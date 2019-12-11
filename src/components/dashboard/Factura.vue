@@ -3,7 +3,7 @@
     <loading :active.sync="isLoading"
              :is-full-page="true"></loading>
     <div class="lists">
-      <va-card class="flex xs12 lg12" v-for="data of formData" :key="'item' + data.id">
+      <va-card class="flex xs12 lg12" c>
         <div align="center" class="buttons">
           <va-button color="info" :to="{ name: 'dashboard' }">
             {{ $t('Volver al Inicio') }}
