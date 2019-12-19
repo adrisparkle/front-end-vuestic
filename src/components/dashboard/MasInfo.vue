@@ -297,11 +297,12 @@ export default {
       axios.get('/solicitud/' + this.solicitud1.id)
         .then(response => {
           this.solicitud1 = response.data
+          this.isLoading = true
         })
         .catch()
       setTimeout(() => {
         this.isLoading = false
-      }, 1000)
+      }, 3110)
     },
     quotation: function () {
       this.isLoading = true
@@ -309,11 +310,12 @@ export default {
       axios.get('/oferta/' + this.oferta1.id)
         .then(response => {
           this.oferta1 = response.data
+          this.isLoading = true
         })
         .catch()
       setTimeout(() => {
         this.isLoading = false
-      }, 1000)
+      }, 3110)
     },
     order: function () {
       this.isLoading = true
@@ -321,11 +323,12 @@ export default {
       axios.get('/pedido/' + this.pedido1.id)
         .then(response => {
           this.pedido1 = response.data
+          this.isLoading = true
         })
         .catch()
       setTimeout(() => {
         this.isLoading = false
-      }, 1000)
+      }, 3110)
     },
     merchandise: function () {
       this.isLoading = true
@@ -333,11 +336,12 @@ export default {
       axios.get('/mercancia/' + this.mercancia1.id)
         .then(response => {
           this.mercancia1 = response.data
+          this.isLoading = true
         })
         .catch()
       setTimeout(() => {
         this.isLoading = false
-      }, 2000)
+      }, 3110)
     },
 
     check: function () {
@@ -346,11 +350,12 @@ export default {
       axios.get('/factura/' + this.factura1.id)
         .then(response => {
           this.factura1 = response.data
+          this.isLoading = true
         })
         .catch()
       setTimeout(() => {
         this.isLoading = false
-      }, 2000)
+      }, 3110)
     },
     payment: function () {
       this.isLoading = true
@@ -358,11 +363,12 @@ export default {
       axios.get('/pago/' + this.pago1.id)
         .then(response => {
           this.pago1 = response.data
+          this.isLoading = true
         })
         .catch()
       setTimeout(() => {
         this.isLoading = false
-      }, 2000)
+      }, 3110)
     },
     solicitud: function (id) {
       router.push('../solicitud/' + id)

@@ -16,12 +16,12 @@
             placeholder="Regional"
             readonly
           />
-          <va-date-picker
+          <va-input
             :label="$t('Fecha desde')"
             v-model="date1"
             readonly
           />
-          <va-date-picker
+          <va-input
             :label="$t('Fecha Hasta')"
             v-model="date2"
             readonly
@@ -57,8 +57,9 @@
 import axios from 'axios'
 import router from '../../router/index'
 import Loading from 'vue-loading-overlay'
+import VaInput from 'vuestic-ui/src/components/vuestic-components/va-input/VaInput'
 export default {
-  components: { Loading },
+  components: { VaInput, Loading },
   data () {
     return {
       simple: '',

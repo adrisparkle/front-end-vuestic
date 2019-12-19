@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import AppLayout from '../components/admin/AppLayout'
-import store from '../store/index'
 Vue.use(Router)
 
 const EmptyParentComponent = {
@@ -20,14 +19,13 @@ export default new Router({
     ...demoRoutes,
     {
       path: '*',
-      redirect: { name: 'dashboard' },
+      redirect: { name: 'login' },
     },
     {
       name: 'login',
       path: 'login',
       component: () => import('../components/auth/AuthLayout.vue'),
     },
-    /*
     {
       path: '/404',
       component: EmptyParentComponent,
@@ -54,7 +52,6 @@ export default new Router({
         },
       ],
     },
-    */
     {
       name: 'Admin',
       path: '/admin',

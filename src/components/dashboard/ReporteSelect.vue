@@ -16,12 +16,12 @@
           placeholder="Regional"
           readonly
         />
-        <va-date-picker
+        <va-input
           :label="$t('Fecha desde')"
           v-model="date1"
           readonly
         />
-        <va-date-picker
+        <va-input
           :label="$t('Fecha Hasta')"
           v-model="date2"
           readonly
@@ -44,7 +44,6 @@
       </div>
     </form>
     <!-- @click="check(simpleSelectModel.codigo_proyecto)&&launchToast(formData.length,simpleSelectModel.codigo_proyecto)" -->
-    aquisitos: {{formData.length}} y estito mas {{simpleSelectModel.codigo_proyecto}}
     <div v-if="formData.length > 0">{{reporte(simpleSelectModel.codigo_proyecto)}}</div>
     <div v-if="(formData.length) === 0">{{launchToast()}}</div>
     <div align="center" hidden>

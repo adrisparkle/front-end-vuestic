@@ -163,8 +163,6 @@ export default {
 <style lang="scss">
   .bla{
     padding: 10px !important;
-    color: #000000;
-    background: darkblue;
   }
   .boton_personalizado{
     font-size: 18px;

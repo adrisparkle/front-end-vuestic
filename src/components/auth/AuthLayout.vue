@@ -1,15 +1,11 @@
 <template>
 <div class="auth-layout row align-content--center">
-  <div class="flex xs12 pa-3 flex-center">
-    <router-link class="py-1 flex-center" to="/">
-    <img src="
-    colores-horizontal-LP.jpg" width="400" height="150">
-    </router-link>
-  </div>
-
   <div class="flex xs12 pa-3">
     <div class="d-flex justify--center">
       <va-card class="auth-layout__card">
+        <div class="flex xs12 pa-3 flex-center">
+          <img src="colores-horizontal-LP.jpg" width="200" >
+        </div>
         <va-tabs
           v-model="tabIndex"
           center
@@ -74,7 +70,7 @@ export default {
       let email = this.email
       let password = this.password
       this.$store.dispatch('login', { email, password })
-        .then(() => this.$router.push('/'))
+        .then(() => this.$router.push('/admin/dashboard'))
         .catch(err => console.log(err))
     },
   },
@@ -85,7 +81,7 @@ export default {
 .auth-layout {
   min-height: 100vh;
   background-image: linear-gradient(to right, #ffcb1a, #0e095d);
-
+ // background: #0e095d;
   &__card {
     width: 100%;
     max-width: 600px;
