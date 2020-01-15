@@ -24,16 +24,17 @@ export default new Vuex.Store({
   state: {
     status: '',
     token: localStorage.getItem('token') || '',
-    user: {},
+    usernameid: localStorage.getItem('username') || '',
+    name: localStorage.getItem('name') || '',
   },
   mutations: {
     auth_request (state) {
       state.status = 'loading'
     },
-    auth_success (state, token, user) {
+    auth_success (state, { token, usernameid }) {
       state.status = 'success'
       state.token = token
-      state.user = user
+      state.usernameid = usernameid
     },
     auth_error (state) {
       state.status = 'error'
@@ -47,7 +48,6 @@ export default new Vuex.Store({
     login ({ commit }, user) {
       return new Promise((resolve, reject) => {
         commit('auth_request')
-        /* axios({ url: '/auth/GetToken', data: user, method: 'POST' }) */
         axios({
           method: 'post',
           url: '/auth/GetToken',
@@ -58,11 +58,17 @@ export default new Vuex.Store({
           },
         })
           .then(resp => {
-            const token = resp.data.token
-            const user = resp.data.user
+            const token = resp.data.Token
+            const usernameid = resp.data.Id
+            const name = resp.data.name
             localStorage.setItem('token', token)
+            console.log(token)
+            localStorage.setItem('usernameid', usernameid)
+            console.log(usernameid)
+            localStorage.setItem('name', name)
+            console.log(name)
             axios.defaults.headers.common['Authorization'] = token
-            commit('auth_success', token, user)
+            commit('auth_success', { token, usernameid })
             resolve(resp)
           })
           .catch(err => {
@@ -76,13 +82,24 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         commit('logout')
         localStorage.removeItem('token')
+        localStorage.removeItem('usernameid')
+        localStorage.removeItem('name')
         delete axios.defaults.headers.common['Authorization']
+        /* axios.get('/auth/Logout/') */
+        console.log('el token amiga' + localStorage.getItem('token'))
         resolve()
+          .catch(err => {
+            reject(err)
+            console.log(err)
+          })
       })
     },
   },
   getters: {
     isLoggedIn: state => !!state.token,
     authStatus: state => state.status,
+    user: state => state.name,
+    tokencito: state => state.token,
+    userid: state => state.usernameid,
   },
 })

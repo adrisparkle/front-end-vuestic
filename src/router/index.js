@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import AppLayout from '../components/admin/AppLayout'
+import store from '../store'
+/* import { isLoggedIn } from '../store/getters' */
 Vue.use(Router)
 
 const EmptyParentComponent = {
@@ -13,7 +15,7 @@ if (process.env.NODE_ENV === 'development' || process.env.VUE_APP_INCLUDE_DEMOS)
   vueBookRoutes.forEach(route => demoRoutes.push(route))
 }
 
-export default new Router({
+const router = new Router({
   mode: process.env.VUE_APP_ROUTER_MODE_HISTORY === 'true' ? 'history' : 'hash',
   routes: [
     ...demoRoutes,
@@ -61,130 +63,105 @@ export default new Router({
           name: 'dashboard',
           path: 'dashboard',
           component: () => import('../components/dashboard/Dashboard.vue'),
-          /*
           meta: {
             requiresAuth: true,
           },
-          */
         },
         {
           name: 'relaciones',
           path: 'relaciones/:id',
           component: () => import('../components/dashboard/MasInfo.vue'),
-          /*
-         meta: {
+          meta: {
             requiresAuth: true,
-          }, */
+          },
         },
         {
           name: 'oferta',
           path: 'oferta/:id',
           component: () => import('../components/dashboard/Oferta.vue'),
-          /*
           meta: {
             requiresAuth: true,
           },
-          */
         },
         {
           name: 'pedido',
           path: 'pedido/:id',
           component: () => import('../components/dashboard/Pedido.vue'),
-          /*
           meta: {
             requiresAuth: true,
           },
-          */
         },
         {
           name: 'mercancia',
           path: 'mercancia/:id',
           component: () => import('../components/dashboard/Mercancia.vue'),
-          /*
           meta: {
             requiresAuth: true,
           },
-          */
         },
         {
           name: 'factura',
           path: 'factura/:id',
           component: () => import('../components/dashboard/Factura.vue'),
-          /*
           meta: {
             requiresAuth: true,
           },
-          */
         },
         {
           name: 'pago',
           path: 'pago/:id',
           component: () => import('../components/dashboard/Pago.vue'),
-          /*
           meta: {
             requiresAuth: true,
           },
-          */
         },
         {
           name: 'solicitud',
           path: 'solicitud/:id',
           component: () => import('../components/dashboard/Solicitud.vue'),
-          /*
           meta: {
             requiresAuth: true,
           },
-          */
         },
         {
           name: 'asiento',
           path: 'asiento/:id',
           component: () => import('../components/dashboard/Asiento.vue'),
-          /*
           meta: {
             requiresAuth: true,
           },
-          */
         },
         {
           name: 'reportes',
           path: 'reportes',
           component: () => import('../components/dashboard/ReporteSelect.vue'),
-          /*
           meta: {
             requiresAuth: true,
           },
-          */
         },
         {
           name: 'mostrarreporte',
           path: 'mostrarreporte/:id',
           component: () => import('../components/dashboard/ReporteShow.vue'),
-          /*
           meta: {
             requiresAuth: true,
           },
-          */
         },
         {
           name: 'reportevlir',
           path: 'reportevlir',
           component: () => import('../components/dashboard/SelectVLIR.vue'),
-          /*
           meta: {
             requiresAuth: true,
           },
-          */
         },
         {
           name: 'mostrarvlir',
           path: 'mostrarvlir/:id',
           component: () => import('../components/dashboard/ShowVLIR.vue'),
-          /*
           meta: {
             requiresAuth: true,
           },
-          */
         },
         {
           name: 'forms',
@@ -471,16 +448,15 @@ export default new Router({
     },
   ],
 })
-/*
-Router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (store.getters.isLoggedIn) {
       next()
       return
     }
-    next('/login')
+    next('login')
   } else {
     next()
   }
 })
-*/
+export default router
