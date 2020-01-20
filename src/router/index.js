@@ -62,7 +62,7 @@ const router = new Router({
         {
           name: 'dashboard',
           path: 'dashboard',
-          component: () => import('../components/dashboard/Dashboard.vue'),
+          component: () => import('../components/dashboard/DashboardTable.vue'),
           meta: {
             requiresAuth: true,
           },

@@ -1,16 +1,16 @@
 <template>
   <div class="lists">
-    <va-card class="flex xs12 lg12">
-      <div class="row" v-for="data of formData" :key="'item' + data.id">
-        <div class="flex xs12 lg12">
-          <div align="center" class="buttons">
-            <va-button color="info" :to="{ name: 'dashboard' }">
-              {{ $t('Volver al Inicio') }}
-            </va-button>
-            <va-button color="warning" @click="volver(data.numero_solicitud)">
-              {{ $t('Volver al mapa de relaciones') }}
-            </va-button>
-          </div>
+    <va-card class="flex xs12 lg12" v-for="data of formData" :key="'item' + data.id">
+      <div align="center" class="buttons">
+        <va-button color="info" :to="{ name: 'dashboard' }">
+          {{ $t('Volver al Inicio') }}
+        </va-button>
+        <va-button color="warning" @click="volver(data.num_solicitud)">
+          {{ $t('Volver al mapa de relaciones') }}
+        </va-button>
+      </div>
+      <div class="row" >
+        <div class="flex xs6 lg6">
           <va-list fit class="mb-2">
             <va-list-label>
               {{ $t('Factura de proveedores') }}
@@ -89,6 +89,168 @@
                 </tr>
               </table>
             </template>
+          </va-list>
+        </div>
+        <div class="flex xs6 lg6">
+          <va-list fit class="mb-2" v-if="data.espicificaciones_tecnicas==null && data.informe_proyecto==null && data.informe_circunstanciado==null && data.pago_directo==null && data.propuesta==null && data.cuadro_comparativo==null && data.acta_evaluacion==null && data.informe_legal==null && data.pliego==null && data.contrato==null">
+            <va-list-label>
+              {{ $t('Documentos Anexos') }}
+            </va-list-label>
+            <va-item>
+              <va-item-section>
+                <va-item-label align="center">
+                  No existen documentos anexos para este proceso.
+                </va-item-label>
+              </va-item-section>
+            </va-item>
+          </va-list>
+          <va-list fit class="mb-2" v-else>
+            <va-list-label>
+              {{ $t('Documentos Anexos') }}
+            </va-list-label>
+            <va-item v-if="data.espicificaciones_tecnicas!=null">
+              <va-item-section>
+                <va-item-label>
+                  Especificaciones técnicas
+                </va-item-label>
+                <va-item-label caption>
+                  <a v-bind:href="'file:///' + data.espicificaciones_tecnicas">{{ data.espicificaciones_tecnicas }}</a>
+                </va-item-label>
+              </va-item-section>
+              <va-item-section side>
+                <va-icon name="fa fa-eye" color="gray" />
+              </va-item-section>
+            </va-item>
+            <va-item v-if="data.informe_proyecto!=null" clickable @click="docs(data.informe_proyecto)">
+              <va-item-section>
+                <va-item-label>
+                  Informe del Proyecto
+                </va-item-label>
+                <va-item-label caption>
+                  <a v-bind:href="'file:///' + data.informe_proyecto">{{ data.informe_proyecto }}</a>
+                </va-item-label>
+              </va-item-section>
+              <va-item-section side>
+                <va-icon name="fa fa-eye" color="gray" />
+              </va-item-section>
+            </va-item>
+            <va-item v-if="data.informe_circunstanciado!=null" clickable @click="docs(data.informe_circunstanciado)">
+              <va-item-section>
+                <va-item-label>
+                  Informe circunstanciado
+                </va-item-label>
+                <va-item-label caption>
+                  <a v-bind:href="'file:///' + data.informe_circunstanciado">{{ data.informe_circunstanciado }}</a>
+                </va-item-label>
+              </va-item-section>
+              <va-item-section side>
+                <va-icon name="fa fa-eye" color="gray" />
+              </va-item-section>
+            </va-item>
+            <va-item v-if="data.pago_directo!=null" clickable>
+              <va-item-section>
+                <va-item-label>
+                  Pago directo
+                </va-item-label>
+                <va-item-label caption>
+                  <a v-bind:href="'file:///' + data.pago_directo">{{ data.pago_directo }}</a>
+                </va-item-label>
+              </va-item-section>
+              <va-item-section side>
+                <va-icon name="fa fa-eye" color="gray" />
+              </va-item-section>
+            </va-item>
+            <va-item v-if="data.propuesta!=null" clickable>
+              <va-item-section>
+                <va-item-label>
+                  Propuesta
+                </va-item-label>
+                <va-item-label caption>
+                  <a v-bind:href="'file:///' + data.propuesta">{{ data.propuesta }}</a>
+                </va-item-label>
+              </va-item-section>
+              <va-item-section side>
+                <va-icon name="fa fa-eye" color="gray" />
+              </va-item-section>
+            </va-item>
+            <va-item v-if="data.cuadro_comparativo!=null" clickable>
+              <va-item-section>
+                <va-item-label>
+                  Cuadro comparativo
+                </va-item-label>
+                <va-item-label caption>
+                  <a v-bind:href="'file:///' + data.cuadro_comparativo">{{ data.cuadro_comparativo }}</a>
+                </va-item-label>
+              </va-item-section>
+              <va-item-section side>
+                <va-icon name="fa fa-eye" color="gray" />
+              </va-item-section>
+            </va-item>
+            <va-item v-if="data.acta_evaluacion!=null" clickable>
+              <va-item-section>
+                <va-item-label>
+                  Acta de Evaluación
+                </va-item-label>
+                <va-item-label caption>
+                  <a v-bind:href="'file:///' + data.acta_evaluacion">{{ data.acta_evaluacion }}</a>
+                </va-item-label>
+              </va-item-section>
+              <va-item-section side>
+                <va-icon name="fa fa-eye" color="gray" />
+              </va-item-section>
+            </va-item>
+            <va-item v-if="data.informe_proceso!=null" clickable>
+              <va-item-section>
+                <va-item-label>
+                  Informe del proceso
+                </va-item-label>
+                <va-item-label caption>
+                  <a v-bind:href="'file:///' + data.informe_proceso">{{ data.informe_proceso }}</a>
+                </va-item-label>
+              </va-item-section>
+              <va-item-section side>
+                <va-icon name="fa fa-eye" color="gray" />
+              </va-item-section>
+            </va-item>
+            <va-item v-if="data.informe_legal!=null" clickable>
+              <va-item-section>
+                <va-item-label>
+                  Informe legal
+                </va-item-label>
+                <va-item-label caption>
+                  <a v-bind:href="'file:///' + data.informe_legal">{{ data.informe_legal }}</a>
+                </va-item-label>
+              </va-item-section>
+              <va-item-section side>
+                <va-icon name="fa fa-eye" color="gray" />
+              </va-item-section>
+            </va-item>
+            <va-item v-if="data.pliego!=null" clickable>
+              <va-item-section>
+                <va-item-label>
+                  Pliego
+                </va-item-label>
+                <va-item-label caption>
+                  <a v-bind:href="'file:///' + data.pliego">{{ data.pliego }}</a>
+                </va-item-label>
+              </va-item-section>
+              <va-item-section side>
+                <va-icon name="fa fa-eye" color="gray" />
+              </va-item-section>
+            </va-item>
+            <va-item v-if="data.contrato!=null" clickable>
+              <va-item-section>
+                <va-item-label>
+                  Contrato
+                </va-item-label>
+                <va-item-label caption>
+                  <a v-bind:href="'file:///' + data.contrato">{{ data.contrato }}</a>
+                </va-item-label>
+              </va-item-section>
+              <va-item-section side>
+                <va-icon name="fa fa-eye" color="gray" />
+              </va-item-section>
+            </va-item>
           </va-list>
         </div>
       </div>

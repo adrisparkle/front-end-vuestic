@@ -8,7 +8,7 @@
         <va-button color="info" :to="{ name: 'dashboard' }">
           {{ $t('Volver al Inicio') }}
         </va-button>
-        <va-button color="warning" @click="volver(data.numero_solicitud)">
+        <va-button color="warning" @click="volver(data.num_solicitud)">
           {{ $t('Volver al mapa de relaciones') }}
         </va-button>
       </div>

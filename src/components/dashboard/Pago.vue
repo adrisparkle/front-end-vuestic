@@ -11,7 +11,7 @@
             <va-button color="info" :to="{ name: 'dashboard' }">
               {{ $t('Volver al Inicio') }}
             </va-button>
-            <va-button color="warning" @click="volver(data.numero_solicitud)">
+            <va-button color="warning" @click="volver(data.num_solicitud)">
               {{ $t('Volver al mapa de relaciones') }}
             </va-button>
           </div>
@@ -101,7 +101,7 @@
           </va-list>
         </div>
         <div align="center" class="flex xs12 lg12">
-          <va-button color="success" @click="asiento(data.numero_documento)">
+          <va-button color="success" @click="asiento(data.num_pago)">
             {{ $t('Ver asiento contable') }}
           </va-button>
         </div>
