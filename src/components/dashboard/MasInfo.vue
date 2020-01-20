@@ -37,7 +37,7 @@
                     <template slot="title"></template>
                     <b>N° Doc: </b>{{ sol.numero_solicitud }}<br>
                     <b>Fecha: </b>{{ sol.fecha_solicitud }}<br>
-                    <b>Fecha: </b>{{ sol.solicitante }}<br>
+                    <b>Solicitante: </b>{{ sol.solicitante }}<br>
                     <va-button flat small color="blue" icon="fa fa-plus" @click="solicitud(sol.num_solicitud)">
                       {{ $t('Ver detalle') }}
                     </va-button>
@@ -53,7 +53,7 @@
                     <template slot="title"></template>
                     <b>N° Doc: </b>{{ sol.numero_solicitud }}<br>
                     <b>Fecha: </b>{{ sol.fecha_solicitud }}<br>
-                    <b>Fecha: </b>{{ sol.solicitante }}<br>
+                    <b>Solicitante: </b>{{ sol.solicitante }}<br>
                     <va-button flat small color="blue" icon="fa fa-plus" @click="solicitud(sol.num_solicitud)">
                       {{ $t('Ver detalle') }}
                     </va-button>
@@ -79,7 +79,7 @@
                     <template slot="title"></template>
                     <b>N° Doc: </b>{{ ofe.numero_oferta }}<br>
                     <b>Fecha: </b>{{ ofe.fecha_oferta }}<br>
-                    <b>Fecha: </b>{{ ofe.proveedor }}<br>
+                    <b>Proveedor: </b>{{ ofe.proveedor }}<br>
                     <va-button flat small color="blue" icon="fa fa-plus" @click="oferta(ofe.num_oferta)">
                       {{ $t('Ver detalle') }}
                     </va-button>
@@ -95,7 +95,7 @@
                     <template slot="title"></template>
                     <b>N° Doc: </b>{{ ofe.numero_oferta }}<br>
                     <b>Fecha: </b>{{ ofe.fecha_oferta }}<br>
-                    <b>Fecha: </b>{{ ofe.fecha_oferta }}<br>
+                    <b>Proveedor: </b>{{ ofe.fecha_oferta }}<br>
                     <va-button flat small color="blue" icon="fa fa-plus" @click="oferta(ofe.num_oferta)">
                       {{ $t('Ver detalle') }}
                     </va-button>
@@ -120,7 +120,7 @@
                     <template slot="title"></template>
                     <b>N° Doc: </b>{{ ped.numero_pedido }}<br>
                     <b>Fecha: </b>{{ ped.fecha_pedido }}<br>
-                    <b>Fecha: </b>{{ ped.proveedor }}<br>
+                    <b>Proveedor: </b>{{ ped.proveedor }}<br>
                     <va-button flat small color="blue" icon="fa fa-plus" @click="pedido(ped.num_pedido)">
                       {{ $t('Ver detalle') }}
                     </va-button>
@@ -135,7 +135,7 @@
                     <template slot="title"></template>
                     <b>N° Doc: </b>{{ ped.numero_pedido }}<br>
                     <b>Fecha: </b>{{ ped.fecha_pedido }}<br>
-                    <b>Fecha: </b>{{ ped.proveedor }}<br>
+                    <b>Proveedor: </b>{{ ped.proveedor }}<br>
                     <va-button flat small color="blue" icon="fa fa-plus" @click="pedido(ped.num_pedido)">
                       {{ $t('Ver detalle') }}
                     </va-button>
@@ -160,7 +160,7 @@
                     <template slot="title"></template>
                     <b>N° Doc: </b>{{ mer.numero_mercancia }}<br>
                     <b>Fecha: </b>{{ mer.fecha_mercancia }}<br>
-                    <b>Fecha: </b>{{ mer.proveedor }}<br>
+                    <b>Proveedor: </b>{{ mer.proveedor }}<br>
                     <va-button flat small color="blue" icon="fa fa-plus" @click="mercancia(mer.num_mercancia)">
                       {{ $t('Ver detalle') }}
                     </va-button>
@@ -175,7 +175,7 @@
                     <template slot="title"></template>
                     <b>N° Doc: </b>{{ mer.numero_mercancia }}<br>
                     <b>Fecha: </b>{{ mer.fecha_mercancia }}<br>
-                    <b>Fecha: </b>{{ mer.proveedor }}<br>
+                    <b>Proveedor: </b>{{ mer.proveedor }}<br>
                     <va-button flat small color="blue" icon="fa fa-plus" @click="mercancia(mer.serie_mercancia)">
                       {{ $t('Ver detalle') }}
                     </va-button>
@@ -200,7 +200,7 @@
                     <template slot="title"></template>
                     <b>N° Doc: </b>{{ fac.numero_factura }}<br>
                     <b>Fecha: </b>{{ fac.fecha_factura }}<br>
-                    <b>Fecha: </b>{{ fac.proveedor }}<br>
+                    <b>Proveedor: </b>{{ fac.proveedor }}<br>
                     <va-button flat small color="blue" icon="fa fa-plus" @click="factura(fac.num_factura)">
                       {{ $t('Ver detalle') }}
                     </va-button>
@@ -215,7 +215,7 @@
                     <template slot="title"></template>
                     <b>N° Doc: </b>{{ fac.numero_factura }}<br>
                     <b>Fecha: </b>{{ fac.fecha_factura }}<br>
-                    <b>Fecha: </b>{{ fac.proveedor }}<br>
+                    <b>Proveedor: </b>{{ fac.proveedor }}<br>
                     <va-button flat small color="blue" icon="fa fa-plus" @click="factura(fac.num_factura)">
                       {{ $t('Ver detalle') }}
                     </va-button>
@@ -240,7 +240,7 @@
                     <template slot="title"></template>
                     <b>N° Doc: </b>{{ pag.numero_pago }}<br>
                     <b>Fecha: </b>{{ pag.fecha_pago }}<br>
-                    <b>Fecha: </b>{{ pag.proveedor }}<br>
+                    <b>Proveedor: </b>{{ pag.proveedor }}<br>
                     <va-button flat small color="blue" icon="fa fa-plus" @click="pago(pag.num_pago)">
                       {{ $t('Ver detalle') }}
                     </va-button>
@@ -255,7 +255,7 @@
                     <template slot="title"></template>
                     <b>N° Doc: </b>{{ pag.numero_pago }}<br>
                     <b>Fecha: </b>{{ pag.fecha_pago }}<br>
-                    <b>Fecha: </b>{{ pag.proveedor }}<br>
+                    <b>Proveedor: </b>{{ pag.proveedor }}<br>
                     <va-button flat small color="blue" icon="fa fa-plus" @click="pago(pag.num_pago)">
                       {{ $t('Ver detalle') }}
                     </va-button>
