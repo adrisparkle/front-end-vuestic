@@ -37,7 +37,7 @@
     "normalize.css": "^8.0.1",
     "popper.js": "^1.15.0",
     "v-tooltip": "^2.0.0-rc.30",
-    "vee-validate": "^2.2.13",
+    "vee-validate": "^2.2.15",
     "vue": "^2.6.10",
     "vue-axios": "^2.1.5",
     "vue-bulma-expanding": "0.0.1",

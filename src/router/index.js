@@ -59,78 +59,7 @@ const router = new Router({
       path: '/admin',
       component: AppLayout,
       children: [
-        {
-          name: 'dashboard',
-          path: 'dashboard',
-          component: () => import('../components/dashboard/DashboardTable.vue'),
-          meta: {
-            requiresAuth: true,
-          },
-        },
-        {
-          name: 'relaciones',
-          path: 'relaciones/:id',
-          component: () => import('../components/dashboard/MasInfo.vue'),
-          meta: {
-            requiresAuth: true,
-          },
-        },
-        {
-          name: 'oferta',
-          path: 'oferta/:id',
-          component: () => import('../components/dashboard/Oferta.vue'),
-          meta: {
-            requiresAuth: true,
-          },
-        },
-        {
-          name: 'pedido',
-          path: 'pedido/:id',
-          component: () => import('../components/dashboard/Pedido.vue'),
-          meta: {
-            requiresAuth: true,
-          },
-        },
-        {
-          name: 'mercancia',
-          path: 'mercancia/:id',
-          component: () => import('../components/dashboard/Mercancia.vue'),
-          meta: {
-            requiresAuth: true,
-          },
-        },
-        {
-          name: 'factura',
-          path: 'factura/:id',
-          component: () => import('../components/dashboard/Factura.vue'),
-          meta: {
-            requiresAuth: true,
-          },
-        },
-        {
-          name: 'pago',
-          path: 'pago/:id',
-          component: () => import('../components/dashboard/Pago.vue'),
-          meta: {
-            requiresAuth: true,
-          },
-        },
-        {
-          name: 'solicitud',
-          path: 'solicitud/:id',
-          component: () => import('../components/dashboard/Solicitud.vue'),
-          meta: {
-            requiresAuth: true,
-          },
-        },
-        {
-          name: 'asiento',
-          path: 'asiento/:id',
-          component: () => import('../components/dashboard/Asiento.vue'),
-          meta: {
-            requiresAuth: true,
-          },
-        },
+        /*
         {
           name: 'reportes',
           path: 'reportes',
@@ -148,6 +77,15 @@ const router = new Router({
           },
         },
         {
+          name: 'showjournal',
+          path: 'showjournal/:cuenta/:proyecto',
+          component: () => import('../components/dashboard/JournalShow.vue'),
+          meta: {
+            requiresAuth: true,
+          },
+        },
+        */
+        {
           name: 'reportevlir',
           path: 'reportevlir',
           component: () => import('../components/dashboard/SelectVLIR.vue'),
@@ -156,8 +94,8 @@ const router = new Router({
           },
         },
         {
-          name: 'mostrarvlir',
-          path: 'mostrarvlir/:id',
+          name: 'mostrarVLIR',
+          path: 'mostrarVLIR/:id/:initDate/:endDate/:regional',
           component: () => import('../components/dashboard/ShowVLIR.vue'),
           meta: {
             requiresAuth: true,

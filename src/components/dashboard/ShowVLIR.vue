@@ -4,14 +4,14 @@
              :is-full-page="true"></loading>
     <div class="lists">
       <va-card>
-        <div align="center">
+        <div align="center" v-for="data of formData" :key="'item' + data.PROYECTO_CODIGO">
           <va-button color="info" :to="{ name: 'reportevlir' }">
             {{ $t('Volver al Inicio') }}
           </va-button>
           <vue-excel-xlsx
             :data="items"
             :columns="columns"
-            :filename="'VLIRProyecto'"
+            :filename="'VLIRProyecto'+data.PROYECTO_CODIGO"
             :sheetname="'hoja1'"
             :fields="fields"
             class="boton_personalizado"
@@ -21,17 +21,38 @@
         </div>
         <div class="flex xs12 lg12">
           <va-card>
-            <va-list-label>
-              {{ $t('Reporte') }}
-            </va-list-label>
+            <div align="left" v-for="data of formData" :key="'item' + data.acctcode">
+              <div class="mb-4" style="padding-left: 25px">
+                <p class="display-2">Reporte de gastos</p><br>
+                <table>
+                  <tr>
+                    <td><p class="display-5" style="padding-right: 50px">{{'Nombre del proyecto: ' + data.proyecto_nombre}}</p></td>
+                    <td><p class="display-5" style="padding-left: 50px">{{'Código del proyecto: ' + data.PROYECTO_CODIGO}}</p></td>
+                  </tr>
+                  <br>
+                  <tr>
+                    <td><p class="display-5" style="padding-right: 50px">{{'Valido desde: ' + data.valido_desde}}</p></td>
+                    <td><p class="display-5" style="padding-left: 50px">{{'Valido hasta: ' + data.valido_hasta}}</p></td>
+                  </tr>
+                  <br>
+                  <tr>
+                    <td><p class="display-5" style="padding-right: 50px">{{'Unidad organizacional: ' + data.unidad_organizacional}}</p></td>
+                    <td><p class="display-5" style="padding-left: 50px">{{'PEI/PO: ' + data.pei_po}}</p></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="flex xs12 md2 offset--md10">
+              <va-select
+                v-model="perPage"
+                :label="$t('tables.perPage')"
+                :options="perPageOptions"></va-select>
+            </div>
             <va-data-table
               :fields="fields"
               :data="items"
-              :loading="loading"
-              :totalPages="totalPages"
               :per-page="parseInt(perPage)"
-              @page-selected="readItems"
-              api-mode
+              :loading="loading"
             >
             </va-data-table>
           </va-card>
@@ -52,88 +73,100 @@ export default {
       return [{
         name: 'cuenta',
         title: this.$t('cuenta'),
-        width: '15%',
+        width: '5%',
+        sortField: 'cuenta',
+      }, {
+        name: 'nombre_cuenta',
+        title: this.$t('nombre cuenta'),
+        width: '10%',
       }, {
         name: 'fecha',
-        title: this.$t('fecha'),
-        width: '10%',
+        title: this.$t('fecha comprobante'),
+        width: '5%',
+        sortField: 'fecha',
       }, {
         name: 'numero_comprobante',
-        title: this.$t('numero de comprobante'),
-        width: '15%',
+        title: this.$t('# comprobante'),
+        width: '10%',
       }, {
         name: 'numero_transaccion',
-        title: this.$t('numero de transaccion'),
+        title: this.$t('# transaccion'),
         width: '10%',
       }, {
-        name: 'sucursal',
-        title: this.$t('sucursal'),
-        width: '10%',
+        name: 'linea_transaccion',
+        title: this.$t('# linea'),
+        width: '5%',
       }, {
         name: 'descripcion',
         title: this.$t('descripcion'),
-        width: '35%',
+        width: '20%',
       }, {
         name: 'referencia',
         title: this.$t('referencia'),
         width: '20%',
       }, {
-        name: 'monto',
-        title: this.$t('monto'),
-        width: '20%',
-      }, {
-        name: 'codigo_proyecto',
-        title: this.$t('codigo de proyecto'),
-        width: '20%',
+        name: 'monto_total',
+        title: this.$t('monto total'),
+        width: '10%',
       }]
     },
   },
   data () {
     return {
+      region: '',
       isLoading: false,
       fullPage: true,
       page: 1,
       items: [],
       loading: false,
-      perPage: '6',
+      perPage: '10',
+      perPageOptions: ['5', '10', '15', '20', '50', '100'],
       formData: {
         id: null,
       },
       columns: [
         {
-          label: 'Numero cuenta contable',
+          label: 'NUMERO DE CUENTA CONTABLE',
           field: 'cuenta',
         },
         {
-          label: 'Fecha registro contable',
+          label: 'NOMBRE DE LA CUENTA CONTABLE',
+          field: 'nombre_cuenta',
+        },
+        {
+          label: 'FECHA DE REGISTRO CONTABLE',
           field: 'fecha',
         },
         {
-          label: 'No de comprobante contable',
+          label: 'N° COMPROBANTE CONTABLE',
           field: 'numero_comprobante',
         },
         {
-          label: 'No de transaccion',
+          label: 'N° TRANSACCION',
           field: 'numero_transaccion',
         },
         {
-          label: 'Regional',
+          label: 'N° LINEA DE TRANSACCION',
+          field: 'linea_transaccion',
+        },
+        {
+          label: 'REGIONAL',
           field: 'sucursal',
         },
         {
-          label: 'Descripcion',
+          label: 'DESCRIPCION',
           field: 'descripcion',
         },
         {
-          label: 'Referencia',
+          label: 'REFERENCIA',
           field: 'referencia',
         },
         {
-          label: 'Monto Bs',
-          field: 'monto',
+          label: 'MONTO BS',
+          field: 'monto_total',
         },
         {
-          label: 'Codigo de proyecto',
+          label: 'CODIGO DE PROYECTO',
           field: 'codigo_proyecto',
         },
       ],
@@ -143,9 +176,22 @@ export default {
     readItems: function () {
       this.isLoading = true
       this.items = this.$route.params
-      axios.get('/ProjectVLIRInfo/' + this.items.id)
+      axios.get('/ProjectVLIRInfo/' + this.items.id + '/' + this.items.initDate + '/' + this.items.endDate + '/' + this.items.regional)
         .then(response => {
           this.items = response.data
+        })
+        .catch()
+      setTimeout(() => {
+        this.isLoading = false
+      }, 2000)
+    },
+    init: function () {
+      this.isLoading = true
+      this.formData = this.$route.params
+      this.region = this.formData.regional
+      axios.get('/ProjectNameVLIR/' + this.formData.id)
+        .then(response => {
+          this.formData = response.data
         })
         .catch()
       setTimeout(() => {
@@ -155,11 +201,24 @@ export default {
   },
   created () {
     this.readItems()
+    this.init()
   },
 }
 </script>
 <style lang="scss">
   .bla{
     padding: 10px !important;
+  }
+  .boton_personalizado{
+    font-size: 18px;
+    color: #ffffff;
+    background-color: rgba(135, 229, 10, 0.63);
+    border: 2px solid rgba(135, 229, 10, 0.63);
+    border-radius: 20px;
+    padding: 7.5px 25px;
+  }
+  .boton_personalizado:hover{
+    color: #ffffff;
+    background-color: rgba(64, 229, 131, 0.55);
   }
 </style>

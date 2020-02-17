@@ -4,6 +4,7 @@ export const navigationRoutes = {
     displayName: 'navigationRoutes.home',
   },
   routes: [
+    /*
     {
       name: 'dashboard',
       displayName: 'menu.tituloBusqueda',
@@ -11,6 +12,8 @@ export const navigationRoutes = {
         iconClass: 'vuestic-iconset-dashboard',
       },
     },
+     */
+    /*
     {
       name: 'reportes',
       displayName: 'Reportes',
@@ -18,6 +21,7 @@ export const navigationRoutes = {
         iconClass: 'vuestic-iconset-statistics',
       },
     },
+    */
     {
       name: 'reportevlir',
       displayName: 'Reporte VLIR',
@@ -25,6 +29,7 @@ export const navigationRoutes = {
         iconClass: 'vuestic-iconset-forms',
       },
     },
+    /*
     {
       name: 'forms',
       displayName: 'menu.forms',
@@ -212,5 +217,6 @@ export const navigationRoutes = {
         },
       ],
     },
+    */
   ],
 }

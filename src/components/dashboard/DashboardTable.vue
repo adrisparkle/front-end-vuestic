@@ -27,13 +27,14 @@
           :options="perPageOptions"></va-select>
       </div>
     </div>
+
     <va-data-table
       :fields="fields"
       :data="filteredData"
       :per-page="parseInt(perPage)"
       :loading="loading"
     >
-      <template slot="actions" slot-scope="props" class="flex">
+      <template slot="actions" slot-scope="props">
         <va-button flat small color="blue" icon="fa fa-plus"
                    @click="see(props.rowData.id)">
           {{ $t('icons.mas_info') }}
@@ -42,6 +43,7 @@
     </va-data-table>
   </va-card>
 </template>
+
 <script>
 import { debounce } from 'lodash'
 import axios from 'axios'
@@ -61,7 +63,7 @@ export default {
   computed: {
     fields () {
       return [{
-        name: 'numero_documento',
+        name: 'id',
         title: this.$t('tables.headings.n_documento'),
         width: '15%',
       }, {
@@ -105,7 +107,6 @@ export default {
     }, 400),
     readItems (page = 0) {
       this.loading = true
-
       axios.get('/PurchaseSearch/')
         .then(response => {
           this.items = response.data
@@ -113,7 +114,7 @@ export default {
         })
     },
     see: function (id) {
-      router.push('/admin/relaciones/' + id)
+      router.push('relaciones/' + id)
     },
   },
 }

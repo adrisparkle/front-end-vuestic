@@ -56,33 +56,33 @@ export default {
 </script>
 
 <style lang="scss">
-  .profile-dropdown {
-    cursor: pointer;
+.profile-dropdown {
+  cursor: pointer;
 
-    &__anchor {
+  &__anchor {
+    color: $vue-green;
+  }
+  .va-dropdown-popper__anchor {
+    display: flex;
+    justify-content: flex-end;
+  }
+  &__content {
+    background-color: $dropdown-background;
+    box-shadow: $gray-box-shadow;
+    border-radius: .5rem;
+    width: 8rem;
+  }
+  &__item {
+    display: block;
+    color: $vue-darkest-blue;
+
+    &:hover, &:active {
       color: $vue-green;
     }
-    .va-dropdown-popper__anchor {
-      display: flex;
-      justify-content: flex-end;
-    }
-    &__content {
-      background-color: $dropdown-background;
-      box-shadow: $gray-box-shadow;
-      border-radius: .5rem;
-      width: 8rem;
-    }
-    &__item {
-      display: block;
-      color: $vue-darkest-blue;
-
-      &:hover, &:active {
-        color: $vue-green;
-      }
-    }
-
-    .va-dropdown__anchor {
-      display: inline-block;
-    }
   }
+
+  .va-dropdown__anchor {
+    display: inline-block;
+  }
+}
 </style>
