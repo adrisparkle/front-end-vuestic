@@ -176,6 +176,7 @@ export default {
     readItems: function () {
       this.isLoading = true
       this.items = this.$route.params
+      console.log('/ProjectVLIRInfo/' + this.items.id + '/' + this.items.initDate + '/' + this.items.endDate + '/' + this.items.regional)
       axios.get('/ProjectVLIRInfo/' + this.items.id + '/' + this.items.initDate + '/' + this.items.endDate + '/' + this.items.regional)
         .then(response => {
           this.items = response.data

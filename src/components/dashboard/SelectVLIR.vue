@@ -83,7 +83,7 @@
             /></div>
           </div>
         <div align="center">
-          <va-button color="success" :disabled="dis" @click.prevent="check(projectSelectModel.codigo_proyecto,fechaInicio,fechaFin, regional)"> {{ $t('Generar reporte') }}</va-button>
+          <va-button color="success" :disabled="dis" @click.prevent="check(projectSelectModel.codigo_proyecto,fechaInicio,fechaFin, regionalSelectModel.description)"> {{ $t('Generar reporte') }}</va-button>
         </div>
         </div>
       </form>
@@ -206,6 +206,7 @@ export default {
       if (id !== undefined) {
         if (initDate !== undefined || endDate !== undefined) {
           this.isLoading = true
+          console.log('/ProjectVLIRInfo/' + id + '/' + initDate + '/' + endDate + '/' + regional)
           axios.get('/ProjectVLIRInfo/' + id + '/' + initDate + '/' + endDate + '/' + regional)
             .then(response => {
               this.formData = response.data
