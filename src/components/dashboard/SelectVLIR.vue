@@ -87,10 +87,6 @@
         </div>
         </div>
       </form>
-      <!--
-      <div v-if="formData.length > 0">{{check(simpleSelectModel.codigo_proyecto)}}</div>
-      <div v-if="(formData.length) === 0">{{launchToast()}}</div>
-      -->
       <div align="center" hidden>
         asadasd {{regionalSelectModel.description}}
         jkah{{date1 = projectSelectModel.valido_desde}} <br>
