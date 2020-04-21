@@ -2,100 +2,19 @@
   <div class="vld-parent">
     <loading :active.sync="isLoading"
              :is-full-page="true"></loading>
-    <va-card>
-      <div class="mb-4" align="center">
-        <p class="display-2">Generación de reportes</p><br>
-        <p class="display-4">Gastos del Proyecto VLIR</p>
-        <p>Seleccionar el proyecto a continuación:</p>
-      </div>
-      <form>
-        <div class="flex md6 offset--md3" >
-          <div class="row">
-            <div class="flex xs4 md9">
-              <va-select
-                :label="$t('Regional')"
-                v-model="regionalSelectModel"
-                textBy="regional"
-                keyBy="codigo_proyecto"
-                :options="regionalOptions"
-                placeholder="Seleccione aqui"
-                :value="regional"
-              :error = "err">
-              </va-select>
+    <div class="flex xs12">
+      <va-card>
+          <div class="flex xs12">
+            <div class="row">
+              <div class="flex xs8">
+                <va-chip class="flex xs6" color="primary">Reporte proyectos VLIR</va-chip>
+              </div>
             </div>
-            <div class="flex xs8 md3">
-              <va-button color="info"
-                         @click.prevent="dis=false;
-                         filtrarRegional(regional)">
-                {{ $t('Elegir') }}
-              </va-button>
-            </div>
-          </div>
-          <div class="row">
-            <div class="flex xs12 md12">
-              <va-select
-                :label="$t('Proyecto')"
-                v-model="projectSelectModel"
-                textBy="nombre"
-                searchable
-                keyBy="codigo_proyecto"
-                :options="projectOptions"
-                placeholder="Seleccione aqui"
-                formData = 1000
-                :value="codigo_proyecto"
-                :error="errore"
-                :disabled="dis">
-              </va-select>
-            </div>
-          </div>
-          <div class="row">
-            <div class="flex xs3 md4">
-              <va-input
-              :label="$t('Fecha inicio de proyecto')"
-              v-model="date1"
-              disabled
-            />
-            </div>
-            <div class="flex xs6 md4"><va-input
-              :label="$t('Fecha fin de proyecto')"
-              v-model="date2"
-              disabled
-            /></div>
-            <div class="flex xs3 md4"><va-input
-              :label="$t('Regional del proyecto')"
-              v-model="regional"
-              disabled
-            /></div>
-          </div>
-          <div class="row">
-            <div class="flex xs6 md6"><va-date-picker
-              :label="$t('Fecha desde')"
-              v-model="fechaInicio"
-              :error="erro"
-              v-validate="{date_format: 'dd-mm-yyyy', date_between:[date1,date2]}"
-            /></div>
-            <div class="flex xs6 md6"><va-date-picker
-              :label="$t('Fecha Hasta')"
-              v-model="fechaFin"
-              :error="erro"
-              v-validate="{date_format: 'dd-mm-yyyy', date_between:[date1,date2]}"
-            /></div>
-          </div>
-        <div align="center">
-          <va-button color="success" :disabled="dis" @click.prevent="check(projectSelectModel.codigo_proyecto,fechaInicio,fechaFin, regionalSelectModel.description)"> {{ $t('Generar reporte') }}</va-button>
         </div>
-        </div>
-      </form>
-      <div align="center" hidden>
-        asadasd {{regionalSelectModel.description}}
-        jkah{{date1 = projectSelectModel.valido_desde}} <br>
-        shdkj{{date2 = projectSelectModel.valido_hasta}} <br>
-        kashj{{regional = projectSelectModel.regional}} <br>
-      </div>
     </va-card>
-  </div>
+    </div>
+</div>
 </template>
-
 <script>
 import axios from 'axios'
 import router from '../../router/index'

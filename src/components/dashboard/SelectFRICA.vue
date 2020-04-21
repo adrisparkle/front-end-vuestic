@@ -5,7 +5,7 @@
     <va-card>
       <div class="mb-4" align="center">
         <p class="display-2">Generación de reportes</p><br>
-        <p class="display-4">Gastos del Proyecto VLIR</p>
+        <p class="display-4">Gastos de Proyectos FRICA</p>
         <p>Seleccionar el proyecto a continuación:</p>
       </div>
       <form>
@@ -16,7 +16,7 @@
                 :label="$t('Regional')"
                 v-model="regionalSelectModel"
                 textBy="regional"
-                keyBy="codigo_proyecto"
+                keyBy="regional"
                 :options="regionalOptions"
                 placeholder="Seleccione aqui"
                 :value="regional"
@@ -26,7 +26,7 @@
             <div class="flex xs8 md3">
               <va-button color="info"
                          @click.prevent="dis=false;
-                         filtrarRegional(regional)">
+                         filtrarRegional(regionalSelectModel.regional)">
                 {{ $t('Elegir') }}
               </va-button>
             </div>
@@ -82,7 +82,7 @@
             /></div>
           </div>
         <div align="center">
-          <va-button color="success" :disabled="dis" @click.prevent="check(projectSelectModel.codigo_proyecto,fechaInicio,fechaFin, regionalSelectModel.description)"> {{ $t('Generar reporte') }}</va-button>
+          <va-button color="success" :disabled="dis" @click.prevent="check(projectSelectModel.codigo_proyecto,fechaInicio,fechaFin, regionalSelectModel.regional)"> {{ $t('Generar reporte') }}</va-button>
         </div>
         </div>
       </form>
@@ -137,6 +137,7 @@ export default {
       toastDuration: 3000,
       toastPosition: 'top-center',
       isToastFullWidth: true,
+      regionalSelect: '',
     }
   },
   created () {
@@ -146,7 +147,7 @@ export default {
   methods: {
     init: function () {
       this.isLoading = true
-      axios.get('/ProjectVLIR/')
+      axios.get('/ProjectFRICA/')
         .then(response => {
           this.simpleOptions = response.data
           this.isLoading = false
@@ -154,7 +155,7 @@ export default {
     },
     regionOption: function () {
       this.isLoading = true
-      axios.get('/Regionales/')
+      axios.get('/RegionalesFRICA/')
         .then(response => {
           this.regionalOptions = response.data
           this.isLoading = false
@@ -171,7 +172,8 @@ export default {
         this.err = false
         this.dis = false
         this.isLoading = true
-        axios.get('/FiltroRegionales/' + id)
+        console.log('FiltroRegionalesFRICA/' + id)
+        axios.get('/FiltroRegionalesFRICA/' + id)
           .then(response => {
             this.projectOptions = response.data
             this.isLoading = false
@@ -179,14 +181,14 @@ export default {
       }
     },
     reporte: function (id, initDate, endDate, regional) {
-      router.push('/admin/mostrarvlir/' + id + '/' + initDate + '/' + endDate + '/' + regional)
+      router.push('/admin/mostrarfrica/' + id + '/' + initDate + '/' + endDate + '/' + regional)
     },
     check: function (id, initDate, endDate, regional) {
       if (id !== undefined) {
         if (initDate !== undefined || endDate !== undefined) {
           this.isLoading = true
-          console.log('/ProjectVLIRInfo/' + id + '/' + initDate + '/' + endDate + '/' + regional)
-          axios.get('/ProjectVLIRInfo/' + id + '/' + initDate + '/' + endDate + '/' + regional)
+          console.log('/ProjectFRICAInfo/' + id + '/' + initDate + '/' + endDate + '/' + regional)
+          axios.get('/ProjectFRICAInfo/' + id + '/' + initDate + '/' + endDate + '/' + regional)
             .then(response => {
               this.formData = response.data
               console.log('existe: ' + response.data.length)

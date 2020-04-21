@@ -86,6 +86,14 @@ const router = new Router({
         },
         */
         {
+          name: 'selectreport',
+          path: 'selectreport',
+          component: () => import('../components/dashboard/SelectReport.vue'),
+          meta: {
+            requiresAuth: true,
+          },
+        },
+        {
           name: 'reportevlir',
           path: 'reportevlir',
           component: () => import('../components/dashboard/SelectVLIR.vue'),
@@ -97,6 +105,22 @@ const router = new Router({
           name: 'mostrarVLIR',
           path: 'mostrarVLIR/:id/:initDate/:endDate/:regional',
           component: () => import('../components/dashboard/ShowVLIR.vue'),
+          meta: {
+            requiresAuth: true,
+          },
+        },
+        {
+          name: 'reportefrica',
+          path: 'reportefrica',
+          component: () => import('../components/dashboard/SelectFRICA.vue'),
+          meta: {
+            requiresAuth: true,
+          },
+        },
+        {
+          name: 'mostrarFRICA',
+          path: 'mostrarFRICA/:id/:initDate/:endDate/:regional',
+          component: () => import('../components/dashboard/ShowFRICA.vue'),
           meta: {
             requiresAuth: true,
           },
