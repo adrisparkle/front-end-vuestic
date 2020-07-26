@@ -16,7 +16,7 @@
                 :label="$t('Regional')"
                 v-model="regionalSelectModel"
                 textBy="regional"
-                keyBy="codigo_proyecto"
+                keyBy="regional"
                 :options="regionalOptions"
                 placeholder="Seleccione aqui"
                 :value="regional"
@@ -26,7 +26,7 @@
             <div class="flex xs8 md3">
               <va-button color="info"
                          @click.prevent="dis=false;
-                         filtrarRegional(regional)">
+                         filtrarRegional(regionalSelectModel.regional)">
                 {{ $t('Elegir') }}
               </va-button>
             </div>
@@ -82,7 +82,7 @@
             /></div>
           </div>
         <div align="center">
-          <va-button color="success" :disabled="dis" @click.prevent="check(projectSelectModel.codigo_proyecto,fechaInicio,fechaFin, regionalSelectModel.description)"> {{ $t('Generar reporte') }}</va-button>
+          <va-button color="success" :disabled="dis" @click.prevent="check(projectSelectModel.codigo_proyecto,fechaInicio,fechaFin, regionalSelectModel.regional)"> {{ $t('Generar reporte') }}</va-button>
         </div>
         </div>
       </form>

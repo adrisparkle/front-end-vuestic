@@ -70,45 +70,54 @@ export default {
   components: { VaCard, Loading },
   computed: {
     fields () {
-      return [{
-        name: 'cuenta',
-        title: this.$t('cuenta'),
-        width: '5%',
-        sortField: 'cuenta',
-      }, {
-        name: 'nombre_cuenta',
-        title: this.$t('nombre cuenta'),
-        width: '10%',
-      }, {
-        name: 'fecha',
-        title: this.$t('fecha comprobante'),
-        width: '5%',
-        sortField: 'fecha',
-      }, {
-        name: 'numero_comprobante',
-        title: this.$t('# comprobante'),
-        width: '10%',
-      }, {
-        name: 'numero_transaccion',
-        title: this.$t('# transaccion'),
-        width: '10%',
-      }, {
-        name: 'linea_transaccion',
-        title: this.$t('# linea'),
-        width: '5%',
-      }, {
-        name: 'descripcion',
-        title: this.$t('descripcion'),
-        width: '20%',
-      }, {
-        name: 'referencia',
-        title: this.$t('referencia'),
-        width: '20%',
-      }, {
-        name: 'monto_total',
-        title: this.$t('monto total'),
-        width: '10%',
-      }]
+      return [
+        {
+          name: 'codigo_proyecto',
+          title: this.$t('Proyecto'),
+          width: '5%',
+        }, {
+          name: 'cuenta',
+          title: this.$t('cuenta'),
+          width: '5%',
+          sortField: 'cuenta',
+        }, {
+          name: 'nombre_cuenta',
+          title: this.$t('nombre cuenta'),
+          width: '10%',
+        }, {
+          name: 'fecha',
+          title: this.$t('fecha comprobante'),
+          width: '5%',
+          sortField: 'fecha_comprobante',
+        }, {
+          name: 'numero_comprobante',
+          title: this.$t('# comprobante'),
+          width: '10%',
+        }, {
+          name: 'numero_transaccion',
+          title: this.$t('# transaccion'),
+          width: '10%',
+        }, {
+          name: 'linea_transaccion',
+          title: this.$t('# linea'),
+          width: '5%',
+        }, {
+          name: 'glosa',
+          title: this.$t('descripcion'),
+          width: '20%',
+        }, {
+          name: 'referencia',
+          title: this.$t('referencia'),
+          width: '20%',
+        }, {
+          name: 'monto_total',
+          title: this.$t('monto total'),
+          width: '10%',
+        }, {
+          name: 'fecha_fac',
+          title: this.$t('fecha factura'),
+          width: '10%',
+        }]
     },
   },
   data () {
@@ -135,7 +144,7 @@ export default {
         },
         {
           label: 'FECHA DE REGISTRO CONTABLE',
-          field: 'fecha',
+          field: 'fecha_comprobante',
         },
         {
           label: 'N° COMPROBANTE CONTABLE',
@@ -164,6 +173,10 @@ export default {
         {
           label: 'MONTO BS',
           field: 'monto_total',
+        },
+        {
+          label: 'FECHA FACTURA',
+          field: 'fecha_fac',
         },
         {
           label: 'CODIGO DE PROYECTO',
